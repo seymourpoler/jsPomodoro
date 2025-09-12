@@ -140,3 +140,6 @@ vite.config.ts.timestamp-*
 
 # jetbrains webstorm
 .idea/
+
+# package lock
+package-lock.json
