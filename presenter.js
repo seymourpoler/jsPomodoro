@@ -1,4 +1,4 @@
-function Presenter(view){
+function Presenter(view, timer){
     let self = this;
 
     view.showTime({minutes: 25, seconds: 0});

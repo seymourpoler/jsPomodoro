@@ -30,6 +30,22 @@ describe('Presenter', () =>{
             onResetRequestedHandler();
 
             expect(view.showTime).toHaveBeenCalledWith({minutes: 25, seconds: 0});
+            expect(timer.reset).toHaveBeenCalled();
+        });
+    });
+
+    describe('when Stop is requested', () =>{
+        it('stops the timer', () =>{
+            let onStopRequestedHandler;
+            view.subscribeToOnStopClicked.mockImplementation((handler)=>{
+                onStopRequestedHandler = handler;
+            });
+
+            new Presenter(view);
+
+            onStopRequestedHandler();
+
+            expect(timer.stop).toHaveBeenCalled();
         });
     });
 });
