@@ -3,17 +3,19 @@ const View = require('./view');
 const Presenter = require('./presenter')
 
 describe('Presenter', () =>{
-    let view, presenter;
+    let view;
 
     beforeEach(() =>{
         view = new View();
         spyAllMethodsOf(view);
-        presenter = new Presenter(view);
+
     });
 
     describe('When it is loaded', () =>{
         it('show the default time', () =>{
-            expect(view.showTime).toHaveBeenCalledWith({minutes: 25, seconds: 0});
+             new Presenter(view);
+
+             expect(view.showTime).toHaveBeenCalledWith({minutes: 25, seconds: 0});
         });
     });
 
