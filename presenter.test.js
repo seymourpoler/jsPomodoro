@@ -1,19 +1,24 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 const View = require('./view');
-const Presenter = require('./presenter')
+const Timer = require('./timer');
+const Presenter = require('./presenter');
 
 describe('Presenter', () =>{
+
     let view;
+    let timer;
 
     beforeEach(() =>{
         view = new View();
+        timer = new Timer();
+        spyAllMethodsOf(timer);
         spyAllMethodsOf(view);
 
     });
 
     describe('When it is loaded', () =>{
         it('show the default time', () =>{
-             new Presenter(view);
+             new Presenter(view, timer);
 
              expect(view.showTime).toHaveBeenCalledWith({minutes: 25, seconds: 0});
         });
@@ -25,7 +30,7 @@ describe('Presenter', () =>{
             view.subscribeToOnResetClicked.mockImplementation((handler)=>{
                     onResetRequestedHandler = handler;
                 });
-            new Presenter(view);
+            new Presenter(view, timer);
 
             onResetRequestedHandler();
 
@@ -41,7 +46,7 @@ describe('Presenter', () =>{
                 onStopRequestedHandler = handler;
             });
 
-            new Presenter(view);
+            new Presenter(view, timer);
 
             onStopRequestedHandler();
 
