@@ -46,6 +46,26 @@ describe('Timer', function() {
             vi.advanceTimersByTime(1000);
             expect(handler).toHaveBeenCalledTimes(1);
         });
+
+        it('should reset the timer', () => {
+            const timer = new Timer();
+            const handler = vi.fn();
+
+            timer.start(handler);
+
+            vi.advanceTimersByTime(1000);
+            expect(handler).toHaveBeenCalledTimes(1);
+
+            timer.reset();
+
+            vi.advanceTimersByTime(1000);
+            expect(handler).toHaveBeenCalledTimes(1);
+
+            timer.start(handler);
+            vi.advanceTimersByTime(1000);
+            expect(handler).toHaveBeenCalledTimes(2);
+        });
+
     });
 
     afterEach(() => {
