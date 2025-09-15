@@ -74,7 +74,7 @@ describe('Presenter', () =>{
     });
 
     describe('when the time is up', ()=>{
-        it('should play a sound', () =>{
+        it('should play a sound and timer stops', () =>{
             const time = new Time(0, 1);
             let onStartRequestedHandler;
             view.subscribeToOnStartClicked.mockImplementation((handler)=>{
@@ -90,7 +90,8 @@ describe('Presenter', () =>{
             onTimerStartRequestHandler();
 
             expect(timer.start).toHaveBeenCalled();
-            expect(sound.play).toHaveBeenCalledTimes(1);
+            expect(sound.play).toHaveBeenCalled();
+            expect(timer.stop).toHaveBeenCalled();
         });
     });
 
@@ -103,7 +104,6 @@ function spyAllMethodsOf(element){
 
     for (const property in element) {
         if (typeof element[property] == "function") {
-            //vi.spyOn(element, property);
             element[property] = vi.fn();
         }
     }

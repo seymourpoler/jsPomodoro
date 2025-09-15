@@ -18,6 +18,7 @@ function Presenter(view, timer, sound, time){
             view.showTime(currentTime);
             if(currentTime.isUp()){
                 sound.play();
+                timer.stop();
             }
         });
     });
