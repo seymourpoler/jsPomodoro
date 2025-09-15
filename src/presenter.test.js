@@ -7,20 +7,20 @@ const Presenter = require('./presenter');
 describe('Presenter', () =>{
     let view;
     let timer;
-    let timeFactory;
+    let time;
 
     beforeEach(() =>{
         view = new View();
         timer = new Timer();
         spyAllMethodsOf(timer);
         spyAllMethodsOf(view);
-        timeFactory = new Time(25,0);
+        time = new Time(25,0);
 
     });
 
     describe('When it is loaded', () =>{
         it('show the default time', () =>{
-             new Presenter(view, timer, timeFactory);
+             new Presenter(view, timer, time);
 
              expect(view.showTime).toHaveBeenCalled();
         });
@@ -32,7 +32,7 @@ describe('Presenter', () =>{
             view.subscribeToOnResetClicked.mockImplementation((handler)=>{
                     onResetRequestedHandler = handler;
                 });
-            new Presenter(view, timer, timeFactory);
+            new Presenter(view, timer, time);
 
             onResetRequestedHandler();
 
@@ -47,7 +47,7 @@ describe('Presenter', () =>{
             view.subscribeToOnStopClicked.mockImplementation((handler)=>{
                 onStopRequestedHandler = handler;
             });
-            new Presenter(view, timer, timeFactory);
+            new Presenter(view, timer, time);
 
             onStopRequestedHandler();
 
@@ -61,7 +61,7 @@ describe('Presenter', () =>{
             view.subscribeToOnStartClicked.mockImplementation((handler)=>{
                 onStartRequestedHandler = handler;
             });
-            new Presenter(view, timer, timeFactory);
+            new Presenter(view, timer, time);
 
             onStartRequestedHandler();
 
