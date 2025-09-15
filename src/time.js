@@ -4,11 +4,11 @@ function Time(minutes, seconds){
     let currentSeconds = (minutes*60) + seconds;
 
     self.getMinutes = function(){
-        return currentSeconds/60;
+        return Math.trunc(currentSeconds/60);
     };
 
     self.getSeconds = function(){
-        return currentSeconds % 60;
+        return Math.trunc(currentSeconds % 60);
     };
 
     self.decreaseOneSecond = function(){
