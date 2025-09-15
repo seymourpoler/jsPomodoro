@@ -16,6 +16,10 @@ function Time(minutes, seconds){
             currentSeconds -= 1;
         }
     };
+
+    self.clone = function() {
+        return new Time(self.getMinutes(), self.getSeconds());
+    };
 }
 
 if(module && module.exports){
