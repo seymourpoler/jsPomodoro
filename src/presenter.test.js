@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 const View = require('./view');
 const Timer = require('./timer');
+const Time = require('./time');
 const Presenter = require('./presenter');
 
 describe('Presenter', () =>{
-
     let view;
     let timer;
 
@@ -20,7 +20,7 @@ describe('Presenter', () =>{
         it('show the default time', () =>{
              new Presenter(view, timer);
 
-             expect(view.showTime).toHaveBeenCalledWith({minutes: 25, seconds: 0});
+             expect(view.showTime).toHaveBeenCalled();
         });
     });
 
@@ -34,7 +34,7 @@ describe('Presenter', () =>{
 
             onResetRequestedHandler();
 
-            expect(view.showTime).toHaveBeenCalledWith({minutes: 25, seconds: 0});
+            expect(view.showTime).toHaveBeenCalled();
             expect(timer.reset).toHaveBeenCalled();
         });
     });

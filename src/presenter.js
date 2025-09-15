@@ -1,3 +1,5 @@
+const Time = require('./time');
+
 function Presenter(view, timer){
     const time = new Time(25, 0);
     view.showTime(time);

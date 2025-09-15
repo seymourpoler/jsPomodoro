@@ -15,3 +15,7 @@ function Time(minutes, seconds){
         currentSeconds -= 1;
     };
 }
+
+if(module && module.exports){
+    module.exports	= Time;
+}
