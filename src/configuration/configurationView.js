@@ -3,5 +3,5 @@ function ConfigurationView(){
 }
 
 if(module && module.exports){
-    module.exports	= TimerPresenter;
+    module.exports	= ConfigurationView;
 }
