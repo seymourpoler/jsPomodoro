@@ -45,7 +45,6 @@ describe('Presenter', () =>{
             view.subscribeToOnStopClicked.mockImplementation((handler)=>{
                 onStopRequestedHandler = handler;
             });
-
             new Presenter(view, timer);
 
             onStopRequestedHandler();
