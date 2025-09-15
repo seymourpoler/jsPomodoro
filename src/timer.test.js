@@ -24,16 +24,27 @@ describe('Timer', function() {
 
             timer.start(handler);
 
-            // Advance time by 2 seconds to confirm the timer is running
             vi.advanceTimersByTime(2000);
             expect(handler).toHaveBeenCalledTimes(2);
 
-            // Now, stop the timer
             timer.stop();
 
-            // Advance time by another 2 seconds. The handler count should not increase.
             vi.advanceTimersByTime(2000);
             expect(handler).toHaveBeenCalledTimes(2);
+        });
+    });
+
+    describe('when the reset is requested', () => {
+        it('should reset the timer', () => {
+            const timer = new Timer();
+            const handler = vi.fn();
+            timer.start(handler);
+            vi.advanceTimersByTime(1000);
+
+            timer.reset();
+
+            vi.advanceTimersByTime(1000);
+            expect(handler).toHaveBeenCalledTimes(1);
         });
     });
 
