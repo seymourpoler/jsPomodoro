@@ -1,10 +1,11 @@
 function Presenter(view, timer, time){
-    let currentTime = Object.assign(Object.create(Object.getPrototypeOf(time)), time);
+    let currentTime = time.clone();
     view.showTime(currentTime);
 
     view.subscribeToOnResetClicked(()=>{
         timer.reset();
         view.showTime(time);
+        currentTime = time.clone();
     });
 
     view.subscribeToOnStopClicked(() =>{
