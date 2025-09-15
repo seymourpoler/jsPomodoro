@@ -1,5 +1,5 @@
 function Presenter(view, timer, time){
-    let currentTime = time;
+    let currentTime = Object.assign(Object.create(Object.getPrototypeOf(time)), time);
     view.showTime(currentTime);
 
     view.subscribeToOnResetClicked(()=>{
