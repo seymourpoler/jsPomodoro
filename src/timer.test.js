@@ -15,6 +15,17 @@ describe('Timer', function() {
             vi.advanceTimersByTime(3000);
             expect(handler).toHaveBeenCalledTimes(3);
         });
+
+        it('should not start the timer if it is already running', () => {
+            const timer = new Timer();
+            const handler = vi.fn();
+
+            timer.start(handler);
+            timer.start(handler);
+
+            vi.advanceTimersByTime(1000);
+            expect(handler).toHaveBeenCalledTimes(1);
+        });
     });
 
     describe('when the stop is requested', () => {
