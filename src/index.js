@@ -2,7 +2,8 @@ let jsPomodoro = {};
 jsPomodoro.ApplicationName = "Pomodoro";
 jsPomodoro.version = "0.0.1";
 jsPomodoro.Timer = {};
-jsPomodoro.Configuration ={}
+jsPomodoro.Configuration = {}
+
 const timerView = new TimerView();
 const timer = new Timer();
 const sound = new Sound();
