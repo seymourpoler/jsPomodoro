@@ -8,7 +8,7 @@ function Time(minutes, seconds){
     };
 
     self.getSeconds = function(){
-        return currentSeconds;
+        return currentSeconds % 60;
     };
 
     self.decreaseOneSecond = function(){
