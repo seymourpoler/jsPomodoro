@@ -1,4 +1,6 @@
 import {describe, it, expect, vi, beforeEach, afterEach} from "vitest";
+import{spyAllMethodsOf} from "../testing";
+
 const TimerView = require('./timerView');
 const Timer = require('./timer');
 const Time = require('./time');
@@ -99,11 +101,3 @@ describe('TimerPresenter', () =>{
         vi.useRealTimers();
     });
 });
-
-function spyAllMethodsOf(element){
-    for (const property in element) {
-        if (typeof element[property] == "function") {
-            element[property] = vi.fn();
-        }
-    }
-}
