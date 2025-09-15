@@ -42,13 +42,10 @@ describe('time', () => {
         });
 
         it('should correctly handle time decrease across a minute boundary', () => {
-            // Arrange
             const time = new Time(1, 0); // Starts with 60 seconds
 
-            // Act
             time.decreaseOneSecond();
 
-            // Assert
             expect(time.getMinutes()).toBe(0);
             expect(time.getSeconds()).toBe(59);
         });
