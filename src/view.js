@@ -1,15 +1,22 @@
 function View(){
     let self = this;
 
-    let onStartClicked;
-    let onStopClicked;
-
     self.subscribeToOnStartClicked = function(handler){
-        onStartClicked = handler;
+        if(!document.getElementById("start")){
+            return;
+        }
+        document.getElementById("start").addEventListener('click', function(){
+            handler();
+        });
     }
 
     self.subscribeToOnStopClicked = function(handler){
-        onStopClicked = handler;
+        if(!document.getElementById("stop")){
+            return;
+        }
+        document.getElementById("stop").addEventListener('click', function(){
+            handler();
+        });
     }
 
     self.subscribeToOnResetClicked = function(handler){
@@ -19,14 +26,6 @@ function View(){
         document.getElementById("reset").addEventListener('click', function(){
             handler();
         });
-    }
-
-    self.start = function(){
-        onStartClicked();
-    }
-
-    self.stop = function(){
-        onStopClicked();
     }
 
     self.showTime = function(time){

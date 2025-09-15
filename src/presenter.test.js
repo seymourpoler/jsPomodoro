@@ -52,6 +52,20 @@ describe('Presenter', () =>{
             expect(timer.stop).toHaveBeenCalled();
         });
     });
+
+    describe('When Start is requested', () =>{
+        it('starts the timer', () =>{
+            let onStartRequestedHandler;
+            view.subscribeToOnStartClicked.mockImplementation((handler)=>{
+                onStartRequestedHandler = handler;
+            });
+            new Presenter(view, timer);
+
+            onStartRequestedHandler();
+
+            expect(timer.start).toHaveBeenCalled();
+        });
+    });
 });
 
 function spyAllMethodsOf(element){

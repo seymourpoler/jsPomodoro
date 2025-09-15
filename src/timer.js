@@ -1,8 +1,11 @@
 function Timer(){
     let self = this;
 
-    self.stop = function (){
+    self.start = function (time, handler) {
 
+    }
+
+    self.stop = function (){
     };
 
     self.reset = function(){
