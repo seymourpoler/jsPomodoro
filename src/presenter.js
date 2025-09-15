@@ -3,8 +3,8 @@ function Presenter(view, timer, time){
     view.showTime(currentTime);
 
     view.subscribeToOnResetClicked(()=>{
-        view.showTime(time);
         timer.reset();
+        view.showTime(time);
     });
 
     view.subscribeToOnStopClicked(() =>{
@@ -13,7 +13,7 @@ function Presenter(view, timer, time){
 
     view.subscribeToOnStartClicked(() => {
         timer.start( () =>{
-            time.decreaseOneSecond();
+            currentTime.decreaseOneSecond();
             view.showTime(currentTime);
         });
     });
