@@ -32,8 +32,12 @@ function View(){
         if(!document.getElementById('minutes') || !document.getElementById('seconds')){
             return;
         }
-        document.getElementById('minutes').innerHTML = time.getMinutes().toString().padStart(2, '0');
-        document.getElementById('seconds').innerHTML = time.getSeconds().toString().padStart(2, '0');
+        document.getElementById('minutes').innerHTML = getTwoDigitsNumber(time.getMinutes());
+        document.getElementById('seconds').innerHTML = getTwoDigitsNumber(time.getSeconds());
+
+        function getTwoDigitsNumber(number){
+            return number.toString().padStart(2, '0');
+        }
     }
 }
 
