@@ -1,4 +1,4 @@
-function Presenter(view, timer, sound, time){
+function TimerPresenter(view, timer, sound, time){
     let currentTime = time.clone();
     view.showTime(currentTime);
 
@@ -25,5 +25,5 @@ function Presenter(view, timer, sound, time){
 }
 
 if(module && module.exports){
-    module.exports	= Presenter;
+    module.exports	= TimerPresenter;
 }

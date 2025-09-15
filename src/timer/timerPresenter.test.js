@@ -1,18 +1,18 @@
 import {describe, it, expect, vi, beforeEach, afterEach} from "vitest";
-const View = require('./view');
+const TimerView = require('./timerView');
 const Timer = require('./timer');
 const Time = require('./time');
 const Sound = require('./sound');
-const Presenter = require('./presenter');
+const TimerPresenter = require('./timerPresenter');
 
-describe('Presenter', () =>{
+describe('TimerPresenter', () =>{
     let view;
     let timer;
     let time;
     let sound;
 
     beforeEach(() =>{
-        view = new View();
+        view = new TimerView();
         timer = new Timer();
         sound = new Sound();
         spyAllMethodsOf(timer);
@@ -24,7 +24,7 @@ describe('Presenter', () =>{
 
     describe('When it is loaded', () =>{
         it('show the default time', () =>{
-             new Presenter(view, timer, sound, time);
+             new TimerPresenter(view, timer, sound, time);
 
              expect(view.showTime).toHaveBeenCalled();
         });
@@ -36,7 +36,7 @@ describe('Presenter', () =>{
             view.subscribeToOnResetClicked.mockImplementation((handler)=>{
                     onResetRequestedHandler = handler;
                 });
-            new Presenter(view, timer, sound, time);
+            new TimerPresenter(view, timer, sound, time);
 
             onResetRequestedHandler();
 
@@ -51,7 +51,7 @@ describe('Presenter', () =>{
             view.subscribeToOnStopClicked.mockImplementation((handler)=>{
                 onStopRequestedHandler = handler;
             });
-            new Presenter(view, timer, sound, time);
+            new TimerPresenter(view, timer, sound, time);
 
             onStopRequestedHandler();
 
@@ -65,7 +65,7 @@ describe('Presenter', () =>{
             view.subscribeToOnStartClicked.mockImplementation((handler)=>{
                 onStartRequestedHandler = handler;
             });
-            new Presenter(view, timer, sound, time);
+            new TimerPresenter(view, timer, sound, time);
 
             onStartRequestedHandler();
 
@@ -84,7 +84,7 @@ describe('Presenter', () =>{
             timer.start.mockImplementation((handler)=>{
                 onTimerStartRequestHandler = handler;
             });
-            new Presenter(view, timer, sound, time);
+            new TimerPresenter(view, timer, sound, time);
             onStartRequestedHandler();
 
             onTimerStartRequestHandler();
@@ -101,7 +101,6 @@ describe('Presenter', () =>{
 });
 
 function spyAllMethodsOf(element){
-
     for (const property in element) {
         if (typeof element[property] == "function") {
             element[property] = vi.fn();

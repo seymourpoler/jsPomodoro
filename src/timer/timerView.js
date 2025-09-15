@@ -1,4 +1,4 @@
-function View(){
+function TimerView(){
     let self = this;
 
     self.subscribeToOnStartClicked = function(handler){
@@ -39,5 +39,5 @@ function View(){
 }
 
 if(module && module.exports){
-    module.exports	= View;
+    module.exports	= TimerView;
 }
