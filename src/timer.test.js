@@ -79,6 +79,23 @@ describe('Timer', function() {
 
     });
 
+    describe('when the start and the stop is requested', () => {
+        describe('without an active interval', () => {
+            it('should stop and reset timers', () => {
+                const timer = new Timer();
+
+                expect(() => timer.stop()).not.toThrow();
+                expect(() => timer.reset()).not.toThrow();
+
+                timer.start(()=>{});
+                timer.stop();
+
+                expect(() => timer.stop()).not.toThrow();
+                expect(() => timer.reset()).not.toThrow();
+            });
+        });
+    });
+
     afterEach(() => {
         vi.useRealTimers();
     });
