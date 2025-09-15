@@ -2,27 +2,18 @@ function TimerView(){
     let self = this;
 
     self.subscribeToOnStartClicked = function(handler){
-        if(!document.getElementById("start")){
-            return;
-        }
         document.getElementById("start").addEventListener('click', function(){
             handler();
         });
     }
 
     self.subscribeToOnStopClicked = function(handler){
-        if(!document.getElementById("stop")){
-            return;
-        }
         document.getElementById("stop").addEventListener('click', function(){
             handler();
         });
     }
 
     self.subscribeToOnResetClicked = function(handler){
-        if(!document.getElementById("reset")){
-            return;
-        }
         document.getElementById("reset").addEventListener('click', function(){
             handler();
         });

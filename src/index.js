@@ -6,6 +6,6 @@ const timerView = new TimerView();
 const timer = new Timer();
 const sound = new Sound();
 const time = new Time(25,0);
-new TimerPresenter(jsPomodoro.Timer.View, timer, sound, time);
+new TimerPresenter(timerView, timer, sound, time);
 
 console.log('it works');
