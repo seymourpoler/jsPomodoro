@@ -1,5 +1,6 @@
 function Presenter(view, timer, time){
-    view.showTime(time);
+    let currentTime = time;
+    view.showTime(currentTime);
 
     view.subscribeToOnResetClicked(()=>{
         view.showTime(time);
@@ -13,7 +14,7 @@ function Presenter(view, timer, time){
     view.subscribeToOnStartClicked(() => {
         timer.start( () =>{
             time.decreaseOneSecond();
-            view.showTime(time);
+            view.showTime(currentTime);
         });
     });
 }
