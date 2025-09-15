@@ -31,5 +31,14 @@ describe('time', () => {
             expect(time.getMinutes()).toBe(0);
             expect(time.getSeconds()).toBe(0);
         });
+        
+        it('should avoid negative values', () =>{
+            const time = new Time(0, 0);
+    
+            time.decreaseOneSecond();
+
+            expect(time.getMinutes()).toBe(0);
+            expect(time.getSeconds()).toBe(0);
+        });
     });
 });

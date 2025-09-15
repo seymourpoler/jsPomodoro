@@ -12,7 +12,9 @@ function Time(minutes, seconds){
     };
 
     self.decreaseOneSecond = function(){
-        currentSeconds -= 1;
+        if(currentSeconds > 0){
+            currentSeconds -= 1;
+        }
     };
 }
 
