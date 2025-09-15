@@ -11,4 +11,14 @@ describe('time', () => {
             expect(minutes.toString().padStart(2, '0')).toBe('09');
         });
     });
+    
+    describe('when getting seconds are requested', () => {
+        it('should show seconds', () =>{
+            const time = new Time(19, 8);
+
+            const seconds = time.getSeconds();
+
+            expect(seconds.toString().padStart(2, '0')).toBe('08');
+        });
+    });
 });
