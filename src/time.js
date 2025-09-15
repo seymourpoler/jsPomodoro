@@ -1,4 +1,5 @@
 function Time(minutes, seconds){
+    const minimumNumberOfSeconds = 0;
     let self = this;
 
     let currentSeconds = (minutes*60) + seconds;
@@ -12,9 +13,13 @@ function Time(minutes, seconds){
     };
 
     self.decreaseOneSecond = function(){
-        if(currentSeconds > 0){
+        if(currentSeconds > minimumNumberOfSeconds){
             currentSeconds -= 1;
         }
+    };
+
+    self.isUp = function(){
+        return currentSeconds <= minimumNumberOfSeconds;
     };
 
     self.clone = function() {

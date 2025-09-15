@@ -1,4 +1,4 @@
-function Presenter(view, timer, time){
+function Presenter(view, timer, sound, time){
     let currentTime = time.clone();
     view.showTime(currentTime);
 
@@ -13,9 +13,12 @@ function Presenter(view, timer, time){
     });
 
     view.subscribeToOnStartClicked(() => {
-        timer.start( () =>{
+        timer.start(() =>{
             currentTime.decreaseOneSecond();
             view.showTime(currentTime);
+            if(currentTime.isUp()){
+                sound.play();
+            }
         });
     });
 }

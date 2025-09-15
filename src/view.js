@@ -29,9 +29,6 @@ function View(){
     }
 
     self.showTime = function(time){
-        if(!document.getElementById('minutes') || !document.getElementById('seconds')){
-            return;
-        }
         document.getElementById('minutes').innerHTML = getTwoDigitsNumber(time.getMinutes());
         document.getElementById('seconds').innerHTML = getTwoDigitsNumber(time.getSeconds());
 

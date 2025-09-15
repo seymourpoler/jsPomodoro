@@ -1,26 +1,30 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import {describe, it, expect, vi, beforeEach, afterEach} from "vitest";
 const View = require('./view');
 const Timer = require('./timer');
 const Time = require('./time');
+const Sound = require('./sound');
 const Presenter = require('./presenter');
 
 describe('Presenter', () =>{
     let view;
     let timer;
     let time;
+    let sound;
 
     beforeEach(() =>{
         view = new View();
         timer = new Timer();
+        sound = new Sound();
         spyAllMethodsOf(timer);
         spyAllMethodsOf(view);
+        spyAllMethodsOf(sound);
         time = new Time(25,0);
-
+        vi.useFakeTimers()
     });
 
     describe('When it is loaded', () =>{
         it('show the default time', () =>{
-             new Presenter(view, timer, time);
+             new Presenter(view, timer, sound, time);
 
              expect(view.showTime).toHaveBeenCalled();
         });
@@ -32,7 +36,7 @@ describe('Presenter', () =>{
             view.subscribeToOnResetClicked.mockImplementation((handler)=>{
                     onResetRequestedHandler = handler;
                 });
-            new Presenter(view, timer, time);
+            new Presenter(view, timer, sound, time);
 
             onResetRequestedHandler();
 
@@ -47,7 +51,7 @@ describe('Presenter', () =>{
             view.subscribeToOnStopClicked.mockImplementation((handler)=>{
                 onStopRequestedHandler = handler;
             });
-            new Presenter(view, timer, time);
+            new Presenter(view, timer, sound, time);
 
             onStopRequestedHandler();
 
@@ -61,12 +65,37 @@ describe('Presenter', () =>{
             view.subscribeToOnStartClicked.mockImplementation((handler)=>{
                 onStartRequestedHandler = handler;
             });
-            new Presenter(view, timer, time);
+            new Presenter(view, timer, sound, time);
 
             onStartRequestedHandler();
 
             expect(timer.start).toHaveBeenCalled();
         });
+    });
+
+    describe('when the time is up', ()=>{
+        it('should play a sound', () =>{
+            const time = new Time(0, 1);
+            let onStartRequestedHandler;
+            view.subscribeToOnStartClicked.mockImplementation((handler)=>{
+                onStartRequestedHandler = handler;
+            });
+            let onTimerStartRequestHandler;
+            timer.start.mockImplementation((handler)=>{
+                onTimerStartRequestHandler = handler;
+            });
+            new Presenter(view, timer, sound, time);
+            onStartRequestedHandler();
+
+            onTimerStartRequestHandler();
+
+            expect(timer.start).toHaveBeenCalled();
+            expect(sound.play).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    afterEach(()=> {
+        vi.useRealTimers();
     });
 });
 
@@ -74,7 +103,8 @@ function spyAllMethodsOf(element){
 
     for (const property in element) {
         if (typeof element[property] == "function") {
-            vi.spyOn(element, property);
+            //vi.spyOn(element, property);
+            element[property] = vi.fn();
         }
     }
 }
