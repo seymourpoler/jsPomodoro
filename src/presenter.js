@@ -1,9 +1,9 @@
 function Presenter(view, timer){
-    const defaultTime = {minutes: 25, seconds: 0};
-    view.showTime(defaultTime);
+    const time = new Time(25, 0);
+    view.showTime(time);
 
     view.subscribeToOnResetClicked(()=>{
-        view.showTime(defaultTime);
+        view.showTime(time);
         timer.reset();
     });
 
@@ -12,7 +12,8 @@ function Presenter(view, timer){
     });
 
     view.subscribeToOnStartClicked(() => {
-        timer.start(defaultTime, (time) =>{
+        timer.start( () =>{
+            time.decreaseOneSecond();
             view.showTime(time);
         });
     });
