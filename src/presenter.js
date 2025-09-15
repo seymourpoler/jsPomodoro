@@ -1,5 +1,4 @@
-function Presenter(view, timer){
-    const time = new Time(25, 0);
+function Presenter(view, timer, time){
     view.showTime(time);
 
     view.subscribeToOnResetClicked(()=>{

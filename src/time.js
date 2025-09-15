@@ -17,5 +17,5 @@ function Time(minutes, seconds){
 }
 
 if(module && module.exports){
-    module.exports	= Time;
+    module.exports = Time;
 }
