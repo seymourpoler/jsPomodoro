@@ -1,4 +1,7 @@
 function ConfigurationPresenter(view, bus){
+    const defaultMinutes = 25;
+    const defaultSeconds = 0;
+
     let sef = this;
 
     view.subscribeToOnApplyChangesIsClicked(() =>{
@@ -8,7 +11,7 @@ function ConfigurationPresenter(view, bus){
         });
     });
 
-    view.showTime(25, 0);
+    view.showTime(defaultMinutes, defaultSeconds);
 }
 
 if(module && module.exports){
