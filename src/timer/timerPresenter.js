@@ -1,12 +1,13 @@
 function TimerPresenter(view, bus, timer, sound, time){
+    let defaultTime = time;
     let currentTime = time.clone();
 
     view.showTime(currentTime.minutes(), currentTime.seconds());
 
     view.subscribeToOnResetClicked(()=>{
         timer.reset();
-        view.showTime(time.minutes(), time.seconds());
-        currentTime = time.clone();
+        currentTime = defaultTime.clone();
+        view.showTime(currentTime.minutes(), currentTime.seconds());
     });
 
     view.subscribeToOnStopClicked(() =>{
@@ -25,6 +26,8 @@ function TimerPresenter(view, bus, timer, sound, time){
     });
 
     bus.subscribe('updatedConfiguration', (theEvent)=>{
+        defaultTime = time.cloneWith(theEvent.minutes, theEvent.seconds);
+        currentTime = time.cloneWith(theEvent.minutes, theEvent.seconds);
         view.showTime(theEvent.minutes, theEvent.seconds);
     });
 }

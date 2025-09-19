@@ -25,6 +25,10 @@ function Time(minutes, seconds){
     self.clone = function() {
         return new Time(self.minutes(), self.seconds());
     };
+
+    self.cloneWith = function(minutes, seconds) {
+        return new Time(minutes, seconds);
+    };
 }
 
 if(module && module.exports){
