@@ -16,11 +16,11 @@ describe('TimerPresenter', () =>{
 
     beforeEach(() =>{
         view = new TimerView();
+        spyAllMethodsOf(view);
         bus = new Bus();
         timer = new Timer();
-        sound = new Sound();
-        spyAllMethodsOf(view);
         spyAllMethodsOf(timer);
+        sound = new Sound();
         spyAllMethodsOf(sound);
         time = new Time(25,0);
         vi.useFakeTimers()
