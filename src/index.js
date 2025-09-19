@@ -1,4 +1,4 @@
-let jsPomodoro = {};
+var jsPomodoro = {};
 jsPomodoro.ApplicationName = "Pomodoro";
 jsPomodoro.version = "0.0.1";
 jsPomodoro.Timer = {};
@@ -14,5 +14,8 @@ new TimerPresenter(timerView, bus, timer, sound, time);
 
 const configurationView = new ConfigurationView();
 new ConfigurationPresenter(configurationView, bus);
+
+const quickPresetView = new QuickPresetView();
+new QuickPresetPresenter(quickPresetView, bus);
 
 console.log('it works');
