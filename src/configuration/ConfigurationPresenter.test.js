@@ -1,4 +1,4 @@
-import {describe, beforeEach, it} from "vitest";
+import {describe, beforeEach, it, expect} from "vitest";
 import {spyAllMethodsOf} from "../testing";
 const ConfigurationView = require("./configurationView");
 const ConfigurationPresenter = require("./configurationPresenter");
@@ -15,17 +15,18 @@ describe('ConfigurationPresenter', () => {
     });
 
     describe('when applying changes is requested', () => {
-        it('applies the changes', () =>{
+        it('publishes the changes', () =>{
             let onApplyChangesHandler;
             view.subscribeToOnApplyChangesIsClicked.mockImplementation((handler) =>{
                 onApplyChangesHandler = handler;
             });
-            new ConfigurationPresenter(view);
+            view.minutes.mockReturnValue(20);
+            view.seconds.mockReturnValue(15);
+            new ConfigurationPresenter(view, bus);
 
             onApplyChangesHandler();
 
-            const event = {type:'configurationApplied', values:{minutes: 20, seconds: 15}};
-            expect(bus.publish).toHaveBeenCalledWith(event);
+            expect(bus.publish).toHaveBeenCalledWith('updatedConfiguration', {minutes: 20, seconds: 15} );
         });
     });
 });
