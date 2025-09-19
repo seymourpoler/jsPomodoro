@@ -1,7 +1,7 @@
 function Time(minutes, seconds){
     const minimumNumberOfSeconds = 0;
-    let self = this;
 
+    let self = this;
     let currentSeconds = (minutes*60) + seconds;
 
     self.minutes = function(){
