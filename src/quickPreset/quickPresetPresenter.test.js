@@ -14,7 +14,7 @@ describe('quick preset', () => {
         spyAllMethodsOf(bus);
     });
 
-    describe('when 25 minutes  is requested', () => {
+    describe('when 25 minutes and 0 seconds is requested', () => {
         it('publishes the event', ()=>{
             let on25MinutesClickedHandler;
             view.subscribeToOn25MinutesClicked.mockImplementation((handler) =>{
@@ -25,6 +25,20 @@ describe('quick preset', () => {
             on25MinutesClickedHandler();
 
             expect(bus.publish).toHaveBeenCalledWith('selectedQuickPreset', {minutes: 25, seconds: 0});
+        });
+    });
+
+    describe('when 5 minutes and 0 seconds  is requested', () => {
+        it('publishes the event', ()=>{
+            let on5MinutesClickedHandler;
+            view.subscribeToOn5MinutesClicked.mockImplementation((handler) =>{
+                on5MinutesClickedHandler = handler;
+            });
+            new QuickPresetPresenter(view, bus);
+
+            on5MinutesClickedHandler();
+
+            expect(bus.publish).toHaveBeenCalledWith('selectedQuickPreset', {minutes: 5, seconds: 0});
         });
     });
 });
