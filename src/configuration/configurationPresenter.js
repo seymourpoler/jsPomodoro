@@ -2,8 +2,6 @@ function ConfigurationPresenter(view, bus){
     const defaultMinutes = 25;
     const defaultSeconds = 0;
 
-    let sef = this;
-
     view.subscribeToOnApplyChangesIsClicked(() =>{
         bus.publish('updatedConfiguration',{
           minutes: view.minutes(),
