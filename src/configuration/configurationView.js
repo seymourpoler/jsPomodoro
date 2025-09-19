@@ -1,15 +1,15 @@
 function ConfigurationView(){
     let self = this;
 
-    self.subscribeToOnApplyChangesIsClicked = function(handler){
+    self.subscribeToOnApplyChangesIsClicked = (handler) =>{
         throw new Error('not implemented');
     };
 
-    self.minutes = function()  {
+    self.minutes = () => {
         throw new Error('not implemented');
     };
 
-    self.seconds = function() {
+    self.seconds = () => {
         throw new Error('not implemented');
     };
 }
