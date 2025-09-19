@@ -7,6 +7,8 @@ function ConfigurationPresenter(view, bus){
           seconds: view.seconds(),
         });
     });
+
+    view.showTime(25, 0);
 }
 
 if(module && module.exports){

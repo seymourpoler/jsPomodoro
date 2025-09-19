@@ -14,6 +14,14 @@ describe('ConfigurationPresenter', () => {
         spyAllMethodsOf(bus);
     });
 
+    describe('When it is loaded', () =>{
+        it('show the default time', () =>{
+            new ConfigurationPresenter(view, bus);
+
+            expect(view.showTime).toHaveBeenCalledWith(25, 0);
+        });
+    });
+
     describe('when applying changes is requested', () => {
         it('publishes the changes', () =>{
             let onApplyChangesHandler;

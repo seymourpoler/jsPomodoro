@@ -12,6 +12,10 @@ function ConfigurationView(){
     self.seconds = () => {
         throw new Error('not implemented');
     };
+
+    self.showTime = (minutes, seconds) =>{
+        throw new Error('not implemented');
+    };
 }
 
 if(module && module.exports){
