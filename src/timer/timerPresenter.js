@@ -1,5 +1,6 @@
 function TimerPresenter(view, bus, timer, sound, time){
     let currentTime = time.clone();
+
     view.showTime(currentTime.minutes(), currentTime.seconds());
 
     view.subscribeToOnResetClicked(()=>{
