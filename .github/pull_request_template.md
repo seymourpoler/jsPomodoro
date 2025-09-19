@@ -12,6 +12,6 @@ Please check the boxes that apply.
 - [ ] 📚 Documentation update
 - [ ] ⚙️ Chore (refactoring, build process, or housekeeping)
 - [ ] 🎨 Style (changes that do not affect the meaning of the code)
+- [ ] 📦 Upgrade packages
 
-
-## ✅ Context
+## ✅ Add more Context
