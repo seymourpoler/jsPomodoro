@@ -20,7 +20,6 @@ describe('TimerPresenter', () =>{
         timer = new Timer();
         sound = new Sound();
         spyAllMethodsOf(view);
-        spyAllMethodsOf(bus);
         spyAllMethodsOf(timer);
         spyAllMethodsOf(sound);
         time = new Time(25,0);
@@ -31,7 +30,7 @@ describe('TimerPresenter', () =>{
         it('show the default time', () =>{
              new TimerPresenter(view, bus, timer, sound, time);
 
-             expect(view.showTime).toHaveBeenCalled();
+             expect(view.showTime).toHaveBeenCalledWith(25, 0);
         });
     });
 
@@ -45,7 +44,7 @@ describe('TimerPresenter', () =>{
 
             onResetRequestedHandler();
 
-            expect(view.showTime).toHaveBeenCalled();
+            expect(view.showTime).toHaveBeenCalledWith(25, 0);
             expect(timer.reset).toHaveBeenCalled();
         });
     });
@@ -99,6 +98,17 @@ describe('TimerPresenter', () =>{
             expect(timer.stop).toHaveBeenCalled();
         });
     });
+
+    describe('when the configuration is updated', ()=>{
+        it('updates the time', () =>{
+            new TimerPresenter(view, bus, timer, sound, time);
+
+            bus.publish('updatedConfiguration', {minutes:35, seconds:12});
+
+            expect(view.showTime).toHaveBeenCalledWith(25, 0);
+           expect(view.showTime).toHaveBeenLastCalledWith(35, 12);
+        });
+    })
 
     afterEach(()=> {
         vi.useRealTimers();

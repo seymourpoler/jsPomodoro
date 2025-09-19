@@ -19,9 +19,9 @@ function TimerView(){
         });
     }
 
-    self.showTime = function(time){
-        document.getElementById('minutes').innerHTML = getTwoDigitsNumber(time.getMinutes());
-        document.getElementById('seconds').innerHTML = getTwoDigitsNumber(time.getSeconds());
+    self.showTime = function(minutes, seconds){
+        document.getElementById('minutes').innerHTML = getTwoDigitsNumber(minutes);
+        document.getElementById('seconds').innerHTML = getTwoDigitsNumber(seconds);
 
         function getTwoDigitsNumber(number){
             return number.toString().padStart(2, '0');

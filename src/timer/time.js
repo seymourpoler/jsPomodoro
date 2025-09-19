@@ -4,11 +4,11 @@ function Time(minutes, seconds){
 
     let currentSeconds = (minutes*60) + seconds;
 
-    self.getMinutes = function(){
+    self.minutes = function(){
         return Math.trunc(currentSeconds/60);
     };
 
-    self.getSeconds = function(){
+    self.seconds = function(){
         return Math.trunc(currentSeconds % 60);
     };
 
@@ -23,7 +23,7 @@ function Time(minutes, seconds){
     };
 
     self.clone = function() {
-        return new Time(self.getMinutes(), self.getSeconds());
+        return new Time(self.minutes(), self.seconds());
     };
 }
 

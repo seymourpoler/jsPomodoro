@@ -1,10 +1,10 @@
 function TimerPresenter(view, bus, timer, sound, time){
     let currentTime = time.clone();
-    view.showTime(currentTime);
+    view.showTime(currentTime.minutes(), currentTime.seconds());
 
     view.subscribeToOnResetClicked(()=>{
         timer.reset();
-        view.showTime(time);
+        view.showTime(time.minutes(), time.seconds());
         currentTime = time.clone();
     });
 
@@ -15,12 +15,16 @@ function TimerPresenter(view, bus, timer, sound, time){
     view.subscribeToOnStartClicked(() => {
         timer.start(() =>{
             currentTime.decreaseOneSecond();
-            view.showTime(currentTime);
+            view.showTime(currentTime.minutes(), currentTime.seconds());
             if(currentTime.isUp()){
                 sound.play();
                 timer.stop();
             }
         });
+    });
+
+    bus.subscribe('updatedConfiguration', (theEvent)=>{
+        view.showTime(theEvent.minutes, theEvent.seconds);
     });
 }
 
