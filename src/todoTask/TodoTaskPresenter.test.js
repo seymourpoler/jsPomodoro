@@ -30,6 +30,15 @@ describe('TodoTaskPresenter', () => {
             expect(view.showTasks).not.toHaveBeenCalled();
         });
 
+        it('does not anything if task is a white space', ()=>{
+            view.task = () =>{return '   ';};
+            new TodoTaskPresenter(view);
+
+            onAddingTaskClickedHandler();
+
+            expect(view.showTasks).not.toHaveBeenCalled();
+        });
+
         it('does not anything if task is null', ()=>{
             view.task = () =>{return null;};
             new TodoTaskPresenter(view);
