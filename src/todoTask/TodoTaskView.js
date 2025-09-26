@@ -11,10 +11,6 @@ function TodoTaskView() {
         document.getElementById('task-list').addEventListener('click', (event) => {
             const clickedElement = event.target;
 
-            if (clickedElement.matches('.task-checkbox')) {
-                clickedElement.nextElementSibling.classList.toggle('completed');
-            }
-
             if (clickedElement.matches('.delete-btn')) {
                 handler(
                     clickedElement.parentElement.textContent.replace('Delete', '')
@@ -30,10 +26,6 @@ function TodoTaskView() {
         for (let task of tasks) {
             const li = document.createElement('li');
 
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.className = 'task-checkbox';
-
             const taskText = document.createElement('span');
             taskText.className = 'task-text';
             taskText.textContent = task;
@@ -42,7 +34,6 @@ function TodoTaskView() {
             deleteButton.className = 'delete-btn';
             deleteButton.textContent = 'Delete';
 
-            li.appendChild(checkbox);
             li.appendChild(taskText);
             li.appendChild(deleteButton);
 
