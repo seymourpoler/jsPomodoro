@@ -8,6 +8,7 @@ function TodoTaskPresenter(view) {
 
         tasks.push(aTask);
         view.showTasks(tasks);
+        view.cleanTask();
     });
 }
 
