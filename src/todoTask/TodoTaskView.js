@@ -20,8 +20,8 @@ function TodoTaskView() {
     };
 
     self.showTasks = (tasks) => {
-        const taskList = document.getElementById('task-list');
-        taskList.innerHTML = '';
+        const listOfTasks = document.getElementById('task-list');
+        listOfTasks.innerHTML = '';
 
         for (let task of tasks) {
             const li = document.createElement('li');
@@ -37,7 +37,7 @@ function TodoTaskView() {
             li.appendChild(taskText);
             li.appendChild(deleteButton);
 
-            taskList.appendChild(li);
+            listOfTasks.appendChild(li);
         }
     };
 
