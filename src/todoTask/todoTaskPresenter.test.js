@@ -81,10 +81,11 @@ describe('TodoTaskPresenter', () => {
                 onRemovingTaskClickedHandler = handler;
             });
             view.task = () =>{return 'aaaa';};
+
+            new TodoTaskPresenter(view);
         });
 
         it('removes a task', () =>{
-            new TodoTaskPresenter(view);
             onAddingTaskClickedHandler();
 
             onRemovingTaskClickedHandler('aaaa');
@@ -93,16 +94,12 @@ describe('TodoTaskPresenter', () => {
         });
 
         it('does nothing if there is no tasks', () =>{
-            new TodoTaskPresenter(view);
-
             onRemovingTaskClickedHandler('aaaa');
 
             expect(view.showTasks).not.toHaveBeenCalled();
         });
 
         it('does nothing if  task does not exist', () =>{
-            new TodoTaskPresenter(view);
-
             onRemovingTaskClickedHandler('bb');
 
             expect(view.showTasks).not.toHaveBeenCalled();
