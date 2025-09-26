@@ -28,7 +28,7 @@ function TimerPresenter(view, bus, timer, sound, time){
     bus.subscribe('updatedConfiguration', (theEvent)=>{
         configuredTime = time.cloneWith(theEvent.minutes, theEvent.seconds);
         currentTime = configuredTime.clone();
-        view.showTime(theEvent.minutes, theEvent.seconds);
+        view.showTime(currentTime.minutes(), currentTime.seconds());
     });
 }
 
