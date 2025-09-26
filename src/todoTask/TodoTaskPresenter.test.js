@@ -65,6 +65,7 @@ describe('TodoTaskPresenter', () => {
 
             const expectedTasks = ['a-todo-task'];
             expect(view.showTasks).toHaveBeenCalledWith(expectedTasks);
+            expect(view.cleanTask).toHaveBeenCalled();
         });
     });
 });
