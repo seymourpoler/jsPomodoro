@@ -11,18 +11,13 @@ function TodoTaskView() {
         document.getElementById('task-list').addEventListener('click', (event) => {
             const clickedElement = event.target;
 
-            // Check if the clicked element is a checkbox
             if (clickedElement.matches('.task-checkbox')) {
-                const taskTextSpan = clickedElement.nextElementSibling;
-                taskTextSpan.classList.toggle('completed');
+                clickedElement.nextElementSibling.classList.toggle('completed');
             }
 
-            // Check if the clicked element is a delete button
             if (clickedElement.matches('.delete-btn')) {
-                const listItem = clickedElement.parentElement;
-                //taskList.removeChild(listItem);
                 handler(
-                    listItem.textContent.replace('delete', '')
+                    clickedElement.parentElement.textContent.replace('Delete', '')
                 );
             }
         });
