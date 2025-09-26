@@ -10,6 +10,15 @@ function TodoTaskPresenter(view) {
         view.showTasks(tasks);
         view.cleanTask();
     });
+
+    view.subscribeToOnRemoveTaskClicked((aTask) =>{
+        const index = tasks.indexOf(aTask);
+        if (index < 0) { // only splice array when item is found
+            return;
+        }
+        tasks.splice(index, 1);
+        view.showTasks(tasks);
+    });
 }
 
 if(module && module.exports){

@@ -18,4 +18,7 @@ new ConfigurationPresenter(configurationView, bus);
 const quickPresetView = new QuickPresetView();
 new QuickPresetPresenter(quickPresetView, bus);
 
+const todoTaskView = new TodoTaskView();
+new TodoTaskPresenter(todoTaskView);
+
 console.log('it works');

@@ -68,4 +68,29 @@ describe('TodoTaskPresenter', () => {
             expect(view.cleanTask).toHaveBeenCalled();
         });
     });
+
+    describe('When removing a task is requested', () => {
+        let onAddingTaskClickedHandler;
+        let onRemovingTaskClickedHandler;
+
+        beforeEach(() =>{
+            view.subscribeToOnAddingTaskClicked.mockImplementation((handler) =>{
+                onAddingTaskClickedHandler = handler;
+            });
+            view.subscribeToOnRemoveTaskClicked.mockImplementation((handler) =>{
+                onRemovingTaskClickedHandler = handler;
+            });
+            view.task = () =>{return 'aaaa';};
+        });
+
+        it('removes a task', () =>{
+            new TodoTaskPresenter(view);
+            onAddingTaskClickedHandler();
+
+            onRemovingTaskClickedHandler('aaaa');
+
+            expect(view.showTasks).toHaveBeenCalledWith([]);
+
+        });
+    });
 });
