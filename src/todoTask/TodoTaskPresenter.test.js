@@ -31,7 +31,7 @@ describe('TodoTaskPresenter', () => {
         });
 
         it('does not anything if task is a white space', ()=>{
-            view.task = () =>{return '   ';};
+            view.task = () => {return '   ';};
             new TodoTaskPresenter(view);
 
             onAddingTaskClickedHandler();
@@ -40,7 +40,7 @@ describe('TodoTaskPresenter', () => {
         });
 
         it('does not anything if task is null', ()=>{
-            view.task = () =>{return null;};
+            view.task = () => {return null;};
             new TodoTaskPresenter(view);
 
             onAddingTaskClickedHandler();
@@ -49,7 +49,7 @@ describe('TodoTaskPresenter', () => {
         });
 
         it('does not anything if task is undefined', ()=>{
-            view.task = () =>{return undefined;};
+            view.task = () => {return undefined;};
             new TodoTaskPresenter(view);
 
             onAddingTaskClickedHandler();
@@ -58,7 +58,7 @@ describe('TodoTaskPresenter', () => {
         });
 
         it('adds a new todo task', () =>{
-            view.task = () =>{return 'a-todo-task';};
+            view.task = () => {return 'a-todo-task';};
             new TodoTaskPresenter(view);
 
             onAddingTaskClickedHandler();
