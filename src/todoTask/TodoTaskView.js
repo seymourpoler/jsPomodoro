@@ -2,7 +2,9 @@ function TodoTaskView() {
     let self = this;
 
     self.subscribeToOnAddingTaskClicked = (handler) => {
-        throw new Error('not implemented');
+        document.getElementById('addTask').addEventListener('click', ()=>{
+            handler();
+        });
     };
 
     self.showTasks = (tasks) => {
@@ -10,7 +12,11 @@ function TodoTaskView() {
     };
 
     self.task = () => {
-        throw new Error('not implemented');
+        return document.getElementById('taskText').value;
+    };
+
+    self.cleanTask = () => {
+        return document.getElementById('taskText').value = '';
     };
 }
 
