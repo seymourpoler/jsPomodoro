@@ -13,11 +13,15 @@ describe('TodoTaskPresenter', () => {
     });
 
     describe('When adding new todo task is requested', () => {
-        it('does not anything if task is a string empty', ()=>{
-            let onAddingTaskClickedHandler;
+        let onAddingTaskClickedHandler;
+
+        beforeEach(() =>{
             view.subscribeToOnAddingTaskClicked.mockImplementation((handler) =>{
                 onAddingTaskClickedHandler = handler;
             });
+        });
+
+        it('does not anything if task is a string empty', ()=>{
             view.task = () =>{return '';};
             new TodoTaskPresenter(view);
 
@@ -27,10 +31,6 @@ describe('TodoTaskPresenter', () => {
         });
 
         it('adds a new todo task', () =>{
-            let onAddingTaskClickedHandler;
-            view.subscribeToOnAddingTaskClicked.mockImplementation((handler) =>{
-                onAddingTaskClickedHandler = handler;
-            });
             view.task = () =>{return 'a-todo-task';};
             new TodoTaskPresenter(view);
 
