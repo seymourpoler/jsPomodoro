@@ -91,5 +91,13 @@ describe('TodoTaskPresenter', () => {
 
             expect(view.showTasks).toHaveBeenCalledWith([]);
         });
+
+        it('does nothing if there is no tasks', () =>{
+            new TodoTaskPresenter(view);
+
+            onRemovingTaskClickedHandler('aaaa');
+
+            expect(view.showTasks).not.toHaveBeenCalled();
+        });
     });
 });
