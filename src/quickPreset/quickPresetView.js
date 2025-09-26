@@ -26,7 +26,6 @@ function QuickPresetView() {
     };
 }
 
-
 if(module && module.exports){
     module.exports	= QuickPresetView;
 }
