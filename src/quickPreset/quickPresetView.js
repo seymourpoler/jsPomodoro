@@ -2,19 +2,27 @@ function QuickPresetView() {
     let self = this;
 
     self.subscribeToOn25MinutesClicked = (handler)=>{
-        throw new Error('not implemented');
+        document.getElementById("25minutes0seconds").addEventListener('click', function(){
+            handler();
+        });
     };
 
     self.subscribeToOn5MinutesClicked = (handler) =>{
-        throw new Error('not implemented');
+        document.getElementById("5minutes0seconds").addEventListener('click', function(){
+            handler();
+        });
     };
 
     self.subscribeToOn15MinutesClicked = (handler) =>{
-        throw new Error('not implemented');
+        document.getElementById("15minutes0seconds").addEventListener('click', function(){
+            handler();
+        });
     };
 
     self.subscribeToOnOneAndHalfMinutesClicked = (handler) =>{
-        throw new Error('not implemented');
+        document.getElementById("1minute30seconds").addEventListener('click', function(){
+            handler();
+        });
     };
 }
 
