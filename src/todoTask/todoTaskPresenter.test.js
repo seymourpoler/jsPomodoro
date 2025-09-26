@@ -90,7 +90,6 @@ describe('TodoTaskPresenter', () => {
             onRemovingTaskClickedHandler('aaaa');
 
             expect(view.showTasks).toHaveBeenCalledWith([]);
-
         });
     });
 });
