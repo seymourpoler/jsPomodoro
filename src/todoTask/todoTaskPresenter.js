@@ -2,7 +2,7 @@ function TodoTaskPresenter(view) {
     const tasks = [];
     view.subscribeToOnAddingTaskClicked(() =>{
         const aTask = view.task();
-        if(aTask === ''){return;}
+        if(aTask === '' || aTask === null){return;}
 
         tasks.push(aTask);
         view.showTasks(tasks);
