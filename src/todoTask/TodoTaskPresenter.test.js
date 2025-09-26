@@ -39,6 +39,15 @@ describe('TodoTaskPresenter', () => {
             expect(view.showTasks).not.toHaveBeenCalled();
         });
 
+        it('does not anything if task is undefined', ()=>{
+            view.task = () =>{return undefined;};
+            new TodoTaskPresenter(view);
+
+            onAddingTaskClickedHandler();
+
+            expect(view.showTasks).not.toHaveBeenCalled();
+        });
+
         it('adds a new todo task', () =>{
             view.task = () =>{return 'a-todo-task';};
             new TodoTaskPresenter(view);
