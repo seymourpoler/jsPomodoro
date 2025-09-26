@@ -8,11 +8,7 @@ const Sound = require('./sound');
 const TimerPresenter = require('./timerPresenter');
 
 describe('TimerPresenter', () =>{
-    let view;
-    let bus;
-    let timer;
-    let time;
-    let sound;
+    let view, bus, timer, time, sound;
 
     beforeEach(() =>{
         view = new TimerView();
