@@ -55,4 +55,18 @@ describe('quick preset', () => {
             expect(bus.publish).toHaveBeenCalledWith('selectedQuickPreset', {minutes: 5, seconds: 0});
         });
     });
+
+    describe('when one and a half minutes is requested', () => {
+        it('publishes the event', ()=>{
+            let onOneAndHalfMinutesClickedHandler;
+            view.subscribeToOnOneAndHalfMinutesClicked.mockImplementation((handler) =>{
+                onOneAndHalfMinutesClickedHandler = handler;
+            });
+            new QuickPresetPresenter(view, bus);
+
+            onOneAndHalfMinutesClickedHandler();
+
+            expect(bus.publish).toHaveBeenCalledWith('selectedQuickPreset', {minutes: 1, seconds: 30});
+        });
+    });
 });

@@ -11,7 +11,11 @@ function QuickPresetView() {
 
     self.subscribeToOn15MinutesClicked = (handler) =>{
         throw new Error('not implemented');
-    }
+    };
+
+    self.subscribeToOnOneAndHalfMinutesClicked = (handler) =>{
+        throw new Error('not implemented');
+    };
 }
 
 
