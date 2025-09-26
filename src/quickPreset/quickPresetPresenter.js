@@ -7,6 +7,10 @@ function QuickPresetPresenter(view, bus) {
     view.subscribeToOn5MinutesClicked(()=>{
         bus.publish('selectedQuickPreset', {minutes: 5, seconds: 0});
     });
+
+    view.subscribeToOn15MinutesClicked(() =>{
+        bus.publish('selectedQuickPreset', {minutes: 15, seconds: 0});
+    });
 }
 
 if(module && module.exports){

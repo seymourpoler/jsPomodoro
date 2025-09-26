@@ -28,6 +28,20 @@ describe('quick preset', () => {
         });
     });
 
+    describe('when 15 minutes and 0 seconds  is requested', () => {
+        it('publishes the event', ()=>{
+            let on15MinutesClickedHandler;
+            view.subscribeToOn15MinutesClicked.mockImplementation((handler) =>{
+                on15MinutesClickedHandler = handler;
+            });
+            new QuickPresetPresenter(view, bus);
+
+            on15MinutesClickedHandler();
+
+            expect(bus.publish).toHaveBeenCalledWith('selectedQuickPreset', {minutes: 15, seconds: 0});
+        });
+    });
+
     describe('when 5 minutes and 0 seconds  is requested', () => {
         it('publishes the event', ()=>{
             let on5MinutesClickedHandler;
