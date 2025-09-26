@@ -5,7 +5,7 @@ const QuickPresetPresenter = require('./quickPresetPresenter');
 const QuickPresetView = require('./quickPresetView');
 
 describe('quick preset', () => {
-    let view, presenter, bus;
+    let view, bus;
 
     beforeEach(()=>{
         view = new QuickPresetView();
