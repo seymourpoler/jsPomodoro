@@ -106,6 +106,17 @@ describe('TimerPresenter', () =>{
         });
     })
 
+    describe('when a quick preset time is selected', ()=>{
+        it('updates the time', () =>{
+            new TimerPresenter(view, bus, timer, sound, time);
+
+            bus.publish('selectedQuickPreset', {minutes: 1, seconds: 30});
+
+            expect(view.showTime).toHaveBeenCalledWith(25, 0);
+            expect(view.showTime).toHaveBeenLastCalledWith(1, 30);
+        });
+    });
+
     afterEach(()=> {
         vi.useRealTimers();
     });

@@ -30,6 +30,12 @@ function TimerPresenter(view, bus, timer, sound, time){
         currentTime = configuredTime.clone();
         view.showTime(currentTime.minutes(), currentTime.seconds());
     });
+
+    bus.subscribe('selectedQuickPreset', (theEvent)=>{
+        configuredTime = time.cloneWith(theEvent.minutes, theEvent.seconds);
+        currentTime = configuredTime.clone();
+        view.showTime(currentTime.minutes(), currentTime.seconds());
+    });
 }
 
 if(module && module.exports){
