@@ -49,8 +49,17 @@
         <button id="15minutes0seconds" class="preset-btn" data-minutes="15" data-seconds="0">Long Break (15:00)</button>
         <button id="1minute30seconds" class="preset-btn" data-minutes="1" data-seconds="30">Test (1:30)</button>
     </div>
-</div>
 
+    <div class="todo-section">
+        <h3>Today's Tasks</h3>
+        <form id="todo-form" class="todo-form">
+            <input type="text" id="task-input" placeholder="Add a new task..." autocomplete="off"/>
+            <button type="submit">Add</button>
+        </form>
+        <ul id="task-list">
+        </ul>
+    </div>
+</div>
 
 <script src="bus.js"></script>
 <script src="configuration/configurationView.js"></script>
@@ -64,4 +73,3 @@
 <script src="timer/sound.js"></script>
 <script src="index.js"></script>
 </body>
-</html>

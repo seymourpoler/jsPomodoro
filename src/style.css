@@ -183,3 +183,102 @@ button:hover {
         margin: 0.3rem 0;
     }
 }
+
+/* To-Do List Section */
+.todo-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+    text-align: left;
+}
+
+.todo-section h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.todo-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+#task-input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+}
+
+#task-input:focus {
+    outline: none;
+    border-color: #ff4b5c;
+    box-shadow: 0 0 0 2px rgba(255, 75, 92, 0.2);
+}
+
+/* Make the Add button match the other main buttons */
+.todo-form button {
+    background: #ff4b5c;
+}
+.todo-form button:hover {
+    background: #ff1e38;
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#task-list li {
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 0.5rem;
+    background: #f8f9fa;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: background 0.3s;
+}
+
+#task-list li:hover {
+    background: #f1f3f5;
+}
+
+.task-checkbox {
+    margin-right: 0.8rem;
+    cursor: pointer;
+    /* Custom checkbox styling for better looks */
+    width: 18px;
+    height: 18px;
+    accent-color: #28a745;
+}
+
+.task-text {
+    flex-grow: 1;
+    color: #333;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+/* Style for completed tasks */
+.task-text.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.delete-btn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    transition: background 0.3s;
+}
+
+.delete-btn:hover {
+    background: #545b62;
+}
