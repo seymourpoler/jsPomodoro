@@ -26,11 +26,11 @@ function QuickPresetView() {
     };
 
     self.hide = () =>{
-        throw new Error('Not implemented');
+        document.getElementById('presets').style.display = 'none';
     };
 
     self.show = () =>{
-        throw new Error('Not implemented');
+        document.getElementById('presets').style.display = 'block';
     };
 }
 

@@ -8,7 +8,9 @@ function ToggleView(){
     };
 
     self.subscribeToOnShowPresetSectionClicked = (handler) => {
-        throw new Error('Not implemented');
+        document.getElementById("toggle-presets").addEventListener('click', () =>{
+            handler();
+        });
     };
 }
 
