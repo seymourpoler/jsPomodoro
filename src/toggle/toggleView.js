@@ -5,7 +5,11 @@ function ToggleView(){
         document.getElementById("toggle-configuration").addEventListener('click', () =>{
             handler();
         });
-    }
+    };
+
+    self.subscribeToOnShowPresetSectionClicked = (handler) => {
+        throw new Error('Not implemented');
+    };
 }
 
 if(module && module.exports){

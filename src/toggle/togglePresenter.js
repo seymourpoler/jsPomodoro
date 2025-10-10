@@ -13,6 +13,10 @@ function TogglePresenter(view, bus) {
         bus.publish('showConfigurationSection');
         showConfigurationSection = true;
     });
+
+    view.subscribeToOnShowPresetSectionClicked(() =>{
+        bus.publish('showPresetSection');
+    });
 }
 
 if(module && module.exports){
