@@ -12,6 +12,12 @@ function ToggleView(){
             handler();
         });
     };
+
+    self.subscribeToOnShowTodoSectionClicked = (handler) => {
+        document.getElementById("toggle-todo").addEventListener('click', () =>{
+            handler();
+        });
+    };
 }
 
 if(module && module.exports){

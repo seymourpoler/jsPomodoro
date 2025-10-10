@@ -4,6 +4,7 @@ function TogglePresenter(view, bus) {
 
     bus.publish('hideConfigurationSection');
     bus.publish('hidePresetSection');
+    bus.publish('hideTodoSection');
 
     view.subscribeToOnShowConfigurationSectionClicked(() =>{
         if(showConfigurationSection){

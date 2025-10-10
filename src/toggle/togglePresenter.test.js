@@ -87,4 +87,10 @@ describe('TogglePresenter', () => {
             expect(bus.publish).toHaveBeenLastCalledWith('hidePresetSection');
         });
     });
+
+    describe('when loading todo list section is hidden', () => {
+        it('should send an event to hide todo list section', () => {
+            expect(bus.publish).toHaveBeenCalledWith('hideTodoSection');
+        });
+    });
 });
