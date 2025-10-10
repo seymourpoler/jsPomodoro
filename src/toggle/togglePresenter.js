@@ -4,7 +4,7 @@ function TogglePresenter(view, bus) {
     bus.publish('hideConfigurationSection');
 
     view.subscribeToOnShowConfigurationSectionClicked(() =>{
-
+        bus.publish('showConfigurationSection');
     });
 }
 
