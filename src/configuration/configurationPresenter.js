@@ -10,6 +10,10 @@ function ConfigurationPresenter(view, bus){
     });
 
     view.showTime(defaultMinutes, defaultSeconds);
+
+    bus.subscribe('hideConfigurationSection', () => {
+        view.hide();
+    });
 }
 
 if(module && module.exports){
