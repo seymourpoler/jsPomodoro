@@ -1,6 +1,7 @@
 function TogglePresenter(view, bus) {
     let showConfigurationSection = false;
     let showPresetSection = false;
+    let showTodoSection = false;
 
     bus.publish('hideConfigurationSection');
     bus.publish('hidePresetSection');
@@ -27,7 +28,13 @@ function TogglePresenter(view, bus) {
     });
 
     view.subscribeToOnShowTodoSectionClicked(() =>{
+        if(showTodoSection){
+            bus.publish('hideTodoSection');
+            showTodoSection = false;
+            return;
+        }
         bus.publish('showTodoSection');
+        showTodoSection = true;
     });
 }
 

@@ -107,4 +107,19 @@ describe('TogglePresenter', () => {
             expect(bus.publish).toHaveBeenCalledWith('showTodoSection');
         });
     });
+
+    describe('when hiding todo list section is requested', () => {
+        it('should send an event to hide todo list section', () => {
+            let onShowTodoSectionClickedHandler;
+            view.subscribeToOnShowTodoSectionClicked.mockImplementation((handler)=>{
+                onShowTodoSectionClickedHandler = handler;
+            });
+            new TogglePresenter(view, bus);
+
+            onShowTodoSectionClickedHandler();
+            onShowTodoSectionClickedHandler();
+
+            expect(bus.publish).toHaveBeenLastCalledWith('hideTodoSection');
+        });
+    });
 });
