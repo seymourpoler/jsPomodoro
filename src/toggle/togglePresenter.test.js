@@ -37,4 +37,19 @@ describe('TogglePresenter', () => {
             expect(bus.publish).toHaveBeenCalledWith('showConfigurationSection');
         });
     });
+
+    describe('when hiding configuration section is requested', () => {
+        it('should send an event to hide configuration section', () => {
+            let onShowConfigurationSectionClickedHandler;
+            view.subscribeToOnShowConfigurationSectionClicked.mockImplementation((handler)=>{
+                onShowConfigurationSectionClickedHandler = handler;
+            });
+            new TogglePresenter(view, bus);
+
+            onShowConfigurationSectionClickedHandler();
+            onShowConfigurationSectionClickedHandler();
+
+            expect(bus.publish).toHaveBeenLastCalledWith('hideConfigurationSection');
+        });
+    });
 });

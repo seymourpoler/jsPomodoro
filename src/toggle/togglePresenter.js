@@ -4,7 +4,13 @@ function TogglePresenter(view, bus) {
     bus.publish('hideConfigurationSection');
 
     view.subscribeToOnShowConfigurationSectionClicked(() =>{
+        if(showConfigurationSection){
+            bus.publish('hideConfigurationSection');
+            showConfigurationSection = false;
+            return;
+        }
         bus.publish('showConfigurationSection');
+        showConfigurationSection = true;
     });
 }
 
