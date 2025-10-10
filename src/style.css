@@ -121,7 +121,7 @@ button:hover {
 }
 
 /* Presets Section */
-.presets {
+.presets-section {
     margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid #e9ecef;
@@ -192,7 +192,7 @@ button:hover {
     text-align: left;
 }
 
-.todo-section h3 {
+.todo-sectio h3 {
     text-align: center;
     color: #333;
     margin-bottom: 1rem;

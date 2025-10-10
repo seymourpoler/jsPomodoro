@@ -15,6 +15,14 @@ function QuickPresetPresenter(view, bus) {
     view.subscribeToOnOneAndHalfMinutesClicked(() =>{
         bus.publish('selectedQuickPreset', {minutes: 1, seconds: 30});
     });
+
+    bus.subscribe('hidePresetSection', () =>{
+        view.hide();
+    });
+
+    bus.subscribe('showPresetSection', () =>{
+        view.show();
+    });
 }
 
 if(module && module.exports){

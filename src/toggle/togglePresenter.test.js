@@ -22,7 +22,7 @@ describe('TogglePresenter', () => {
         it('should send an event to hide configuration section', () => {
             expect(bus.publish).toHaveBeenCalledWith('hideConfigurationSection');
         });
-    })
+    });
 
     describe('when showing configuration section is requested', () => {
         it('should send an event to show configuration section', () => {
@@ -50,6 +50,41 @@ describe('TogglePresenter', () => {
             onShowConfigurationSectionClickedHandler();
 
             expect(bus.publish).toHaveBeenLastCalledWith('hideConfigurationSection');
+        });
+    });
+
+    describe('when loading preset section is hidden', () => {
+        it('should send an event to hide configuration section', () => {
+            expect(bus.publish).toHaveBeenCalledWith('hidePresetSection');
+        });
+    });
+
+    describe('when showing preset section is requested', () => {
+        it('should send an event to show preset section', () => {
+            let onShowPresetSectionClickedHandler;
+            view.subscribeToOnShowPresetSectionClicked.mockImplementation((handler)=>{
+                onShowPresetSectionClickedHandler = handler;
+            });
+            new TogglePresenter(view, bus);
+
+            onShowPresetSectionClickedHandler();
+
+            expect(bus.publish).toHaveBeenCalledWith('showPresetSection');
+        });
+    });
+
+    describe('when hiding preset section is requested', () => {
+        it('should send an event to hide preset section', () => {
+            let onShowPresetSectionClickedHandler;
+            view.subscribeToOnShowPresetSectionClicked.mockImplementation((handler)=>{
+                onShowPresetSectionClickedHandler = handler;
+            });
+            new TogglePresenter(view, bus);
+
+            onShowPresetSectionClickedHandler();
+            onShowPresetSectionClickedHandler();
+
+            expect(bus.publish).toHaveBeenLastCalledWith('hidePresetSection');
         });
     });
 });

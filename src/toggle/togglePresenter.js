@@ -1,7 +1,9 @@
 function TogglePresenter(view, bus) {
     let showConfigurationSection = false;
+    let showPresetSection = false;
 
     bus.publish('hideConfigurationSection');
+    bus.publish('hidePresetSection');
 
     view.subscribeToOnShowConfigurationSectionClicked(() =>{
         if(showConfigurationSection){
@@ -11,6 +13,17 @@ function TogglePresenter(view, bus) {
         }
         bus.publish('showConfigurationSection');
         showConfigurationSection = true;
+    });
+
+    view.subscribeToOnShowPresetSectionClicked(() =>{
+        bus.publish('showPresetSection');
+        if(showPresetSection){
+            bus.publish('hidePresetSection');
+            showPresetSection = false;
+            return;
+        }
+        bus.publish('showPresetSection');
+        showPresetSection = true;
     });
 }
 

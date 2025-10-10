@@ -1,5 +1,6 @@
 import {beforeEach, describe, it, expect} from "vitest";
 import{spyAllMethodsOf} from "../testing";
+import ConfigurationPresenter from "../configuration/configurationPresenter";
 const Bus = require('../bus');
 const QuickPresetPresenter = require('./quickPresetPresenter');
 const QuickPresetView = require('./quickPresetView');
@@ -67,6 +68,28 @@ describe('quick preset', () => {
             onOneAndHalfMinutesClickedHandler();
 
             expect(bus.publish).toHaveBeenCalledWith('selectedQuickPreset', {minutes: 1, seconds: 30});
+        });
+    });
+
+    describe('When hiding quick presets are requested', () =>{
+        it('hides quick presets', () =>{
+            const bus = new Bus();
+            new QuickPresetPresenter(view, bus);
+
+            bus.publish('hidePresetSection');
+
+            expect(view.hide).toHaveBeenCalled();
+        });
+    });
+
+    describe('When showing quick presets are requested', () =>{
+        it('shows quick presets', () =>{
+            const bus = new Bus();
+            new QuickPresetPresenter(view, bus);
+
+            bus.publish('showPresetSection');
+
+            expect(view.show).toHaveBeenCalled();
         });
     });
 });

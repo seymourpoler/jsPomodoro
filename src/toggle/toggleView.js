@@ -5,7 +5,13 @@ function ToggleView(){
         document.getElementById("toggle-configuration").addEventListener('click', () =>{
             handler();
         });
-    }
+    };
+
+    self.subscribeToOnShowPresetSectionClicked = (handler) => {
+        document.getElementById("toggle-presets").addEventListener('click', () =>{
+            handler();
+        });
+    };
 }
 
 if(module && module.exports){

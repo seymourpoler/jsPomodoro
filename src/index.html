@@ -18,6 +18,11 @@
                 <path d="M19.82 10.99a1 1 0 0 0-1.41 0l-.71.71a1 1 0 0 0-.29.71V14a1 1 0 0 0 1 1h1.59a1 1 0 0 0 .71-.29l.71-.71a1 1 0 0 0 0-1.41l-1.59-1.59zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.24-9.24a5.95 5.95 0 0 0-8.49 0 5.95 5.95 0 0 0 0 8.49 5.95 5.95 0 0 0 8.49 0 5.95 5.95 0 0 0 0-8.49z"/>
             </svg>
         </button>
+        <button id="toggle-presets" class="section-toggle-btn" aria-label="Toggle Presets" title="Toggle Presets">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+            </svg>
+        </button>
     </div>
 
     <!-- Configuration Section -->
@@ -50,7 +55,7 @@
     </div>
 
     <!-- Quick Presets -->
-    <div class="presets">
+    <div  id="presets" class="presets-section">
         <h4>Quick Presets</h4>
         <button id="25minutes0seconds" class="preset-btn" data-minutes="25" data-seconds="0">Pomodoro (25:00)</button>
         <button id="5minutes0seconds" class="preset-btn" data-minutes="5" data-seconds="0">Short Break (5:00)</button>

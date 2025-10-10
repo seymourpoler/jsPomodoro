@@ -24,6 +24,14 @@ function QuickPresetView() {
             handler();
         });
     };
+
+    self.hide = () =>{
+        document.getElementById('presets').style.display = 'none';
+    };
+
+    self.show = () =>{
+        document.getElementById('presets').style.display = 'block';
+    };
 }
 
 if(module && module.exports){
