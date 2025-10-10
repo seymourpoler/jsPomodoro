@@ -24,4 +24,7 @@ new TodoTaskPresenter(todoTaskView, bus);
 const toggleView = new ToggleView();
 new TogglePresenter(toggleView, bus);
 
+const themeView = new ThemeView();
+new ThemePresenter(themeView);
+
 console.log('it works');
