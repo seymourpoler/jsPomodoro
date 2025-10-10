@@ -48,11 +48,11 @@ function TodoTaskView() {
     };
 
     self.show = () =>{
-        throw new Error('not implemented!');
+        document.getElementById('todo').style.display = 'block';
     };
 
     self.hide = () =>{
-        throw new Error('not implemented!');
+        document.getElementById('todo').style.display = 'none';
     };
 }
 
