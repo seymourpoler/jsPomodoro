@@ -2,7 +2,9 @@ function ToggleView(){
     let self = this;
 
     self.subscribeToOnShowConfigurationSectionClicked = (handler) => {
-        throw new Error('Method not implemented.');
+        document.getElementById("toggle-configuration").addEventListener('click', () =>{
+            handler();
+        });
     }
 }
 
