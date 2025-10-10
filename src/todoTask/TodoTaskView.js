@@ -46,6 +46,14 @@ function TodoTaskView() {
     self.cleanTask = () => {
         return document.getElementById('taskText').value = '';
     };
+
+    self.show = () =>{
+        throw new Error('not implemented!');
+    };
+
+    self.hide = () =>{
+        throw new Error('not implemented!');
+    };
 }
 
 if(module && module.exports){

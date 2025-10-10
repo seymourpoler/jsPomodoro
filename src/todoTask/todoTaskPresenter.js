@@ -1,4 +1,4 @@
-function TodoTaskPresenter(view) {
+function TodoTaskPresenter(view, bus) {
     const tasks = [];
 
     view.subscribeToOnAddingTaskClicked(() =>{
@@ -19,6 +19,14 @@ function TodoTaskPresenter(view) {
         }
         tasks.splice(index, 1);
         view.showTasks(tasks);
+    });
+
+    bus.subscribe('showTodoSection', () =>{
+        view.show();
+    });
+
+    bus.subscribe('hideTodoSection', () =>{
+        view.hide();
     });
 }
 

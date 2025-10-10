@@ -19,7 +19,7 @@ const quickPresetView = new QuickPresetView();
 new QuickPresetPresenter(quickPresetView, bus);
 
 const todoTaskView = new TodoTaskView();
-new TodoTaskPresenter(todoTaskView);
+new TodoTaskPresenter(todoTaskView, bus);
 
 const toggleView = new ToggleView();
 new TogglePresenter(toggleView, bus);
