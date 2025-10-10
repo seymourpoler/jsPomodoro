@@ -15,6 +15,9 @@ new TimerPresenter(timerView, bus, timer, sound, time);
 const configurationView = new ConfigurationView();
 new ConfigurationPresenter(configurationView, bus);
 
+const toggleView = new ToggleView();
+new TogglePresenter(toggleView, bus);
+
 const quickPresetView = new QuickPresetView();
 new QuickPresetPresenter(quickPresetView, bus);
 
