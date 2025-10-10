@@ -12,9 +12,7 @@ function TodoTaskView() {
             const clickedElement = event.target;
 
             if (clickedElement.matches('.delete-btn')) {
-                handler(
-                    clickedElement.parentElement.textContent.replace('Delete', '')
-                );
+                handler(clickedElement.parentElement.textContent.replace('Delete', ''));
             }
         });
     };
