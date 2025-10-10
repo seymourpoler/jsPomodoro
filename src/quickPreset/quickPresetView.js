@@ -28,6 +28,10 @@ function QuickPresetView() {
     self.hide = () =>{
         throw new Error('Not implemented');
     };
+
+    self.show = () =>{
+        throw new Error('Not implemented');
+    };
 }
 
 if(module && module.exports){

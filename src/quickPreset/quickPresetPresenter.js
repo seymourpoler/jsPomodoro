@@ -19,6 +19,10 @@ function QuickPresetPresenter(view, bus) {
     bus.subscribe('hidePresetSection', () =>{
         view.hide();
     });
+
+    bus.subscribe('showPresetSection', () =>{
+        view.show();
+    });
 }
 
 if(module && module.exports){

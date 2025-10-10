@@ -81,4 +81,15 @@ describe('quick preset', () => {
             expect(view.hide).toHaveBeenCalled();
         });
     });
+
+    describe('When showing quick presets are requested', () =>{
+        it('shows quick presets', () =>{
+            const bus = new Bus();
+            new QuickPresetPresenter(view, bus);
+
+            bus.publish('showPresetSection');
+
+            expect(view.show).toHaveBeenCalled();
+        });
+    });
 });
