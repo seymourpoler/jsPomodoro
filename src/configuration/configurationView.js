@@ -23,6 +23,14 @@ function ConfigurationView(){
             return number.toString().padStart(2, '0');
         }
     }
+
+    self.hide = () =>{
+        document.getElementById('configuration').style.display = 'none';
+    };
+
+    self.show = () =>{
+        document.getElementById('configuration').style.display = 'block';
+    };
 }
 
 if(module && module.exports){

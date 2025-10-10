@@ -22,7 +22,7 @@ describe('ConfigurationPresenter', () => {
         });
     });
 
-    describe('when applying changes is requested', () => {
+    describe('When applying changes is requested', () => {
         it('publishes the changes', () =>{
             let onApplyChangesHandler;
             view.subscribeToOnApplyChangesIsClicked.mockImplementation((handler) =>{
@@ -35,6 +35,28 @@ describe('ConfigurationPresenter', () => {
             onApplyChangesHandler();
 
             expect(bus.publish).toHaveBeenCalledWith('updatedConfiguration', {minutes: 20, seconds: 15} );
+        });
+    });
+
+    describe('When hiding configuration is requested', () =>{
+        it('hides the configuration', () =>{
+            const bus = new Bus();
+            new ConfigurationPresenter(view, bus);
+
+            bus.publish('hideConfigurationSection');
+
+            expect(view.hide).toHaveBeenCalled();
+        });
+    });
+
+    describe('When showing configuration is requested', () =>{
+        it('shows the configuration', () =>{
+            const bus = new Bus();
+            new ConfigurationPresenter(view, bus);
+
+            bus.publish('showConfigurationSection');
+
+            expect(view.show).toHaveBeenCalled();
         });
     });
 });
