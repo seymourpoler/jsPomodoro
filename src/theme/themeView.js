@@ -12,6 +12,10 @@ function ThemeView() {
             document.body.classList.remove('dark-theme');
         });
     });
+
+    self.showDark = () =>{
+        throw new Error('not implemented');
+    };
 }
 
 if(module && module.exports){
