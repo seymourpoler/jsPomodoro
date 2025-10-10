@@ -1,10 +1,10 @@
 function ThemePresenter(view) {
     view.subscribeToDarkThemeClicked(() =>{
-        throw new Error('not implemented');
+        view.showDark();
     });
 
     view.subscribeToLightThemeClicked(() =>{
-        throw new Error('not implemented');
+        view.showLight();
     });
 
     view.showDark();

@@ -3,18 +3,22 @@ function ThemeView() {
 
     self.subscribeToDarkThemeClicked = ((handler) =>{
        document.getElementById('dark-theme').addEventListener('click', () =>{
-           document.body.classList.add('dark-theme');
+           handler();
        });
     });
 
     self.subscribeToLightThemeClicked = ((handler) =>{
-        document.getElementById('lignt-theme').addEventListener('click', () =>{
-            document.body.classList.remove('dark-theme');
+        document.getElementById('light-theme').addEventListener('click', () =>{
+            handler();
         });
     });
 
     self.showDark = () =>{
-        throw new Error('not implemented');
+        document.body.classList.add('dark-theme');
+    };
+
+    self.showLight = () =>{
+        document.body.classList.remove('dark-theme');
     };
 }
 

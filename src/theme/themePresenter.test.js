@@ -18,4 +18,32 @@ describe('ThemePresenter', () => {
             expect(view.showDark).toHaveBeenCalled();
         });
     });
+
+    describe('When the dark is requested', () => {
+        it('dark theme is shown', ()=>{
+            let onDarkThemeClickedHandler;
+            view.subscribeToDarkThemeClicked.mockImplementation((handler)=>{
+                onDarkThemeClickedHandler = handler;
+            });
+            new ThemePresenter(view);
+
+            onDarkThemeClickedHandler();
+
+            expect(view.showDark).toHaveBeenCalled();
+        });
+    });
+
+    describe('When the light is requested', () => {
+        it('light theme is shown', ()=>{
+            let onLightThemeClickedHandler;
+            view.subscribeToLightThemeClicked.mockImplementation((handler)=>{
+                onLightThemeClickedHandler = handler;
+            });
+            new ThemePresenter(view);
+
+            onLightThemeClickedHandler();
+
+            expect(view.showLight).toHaveBeenCalled();
+        });
+    });
 });
