@@ -27,6 +27,10 @@ function ConfigurationView(){
     self.hide = () =>{
         document.getElementById('configuration').style.display = 'none';
     };
+
+    self.show = () =>{
+        document.getElementById('configuration').style.display = 'block';
+    };
 }
 
 if(module && module.exports){

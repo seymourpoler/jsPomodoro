@@ -38,7 +38,7 @@ describe('ConfigurationPresenter', () => {
         });
     });
 
-    describe('When hide configuration is requested', () =>{
+    describe('When hiding configuration is requested', () =>{
         it('hides the configuration', () =>{
             const bus = new Bus();
             new ConfigurationPresenter(view, bus);
@@ -46,6 +46,17 @@ describe('ConfigurationPresenter', () => {
             bus.publish('hideConfigurationSection');
 
             expect(view.hide).toHaveBeenCalled();
+        });
+    });
+
+    describe('When showing configuration is requested', () =>{
+        it('shows the configuration', () =>{
+            const bus = new Bus();
+            new ConfigurationPresenter(view, bus);
+
+            bus.publish('showConfigurationSection');
+
+            expect(view.show).toHaveBeenCalled();
         });
     });
 });

@@ -14,6 +14,10 @@ function ConfigurationPresenter(view, bus){
     bus.subscribe('hideConfigurationSection', () => {
         view.hide();
     });
+
+    bus.subscribe('showConfigurationSection', () => {
+        view.show();
+    });
 }
 
 if(module && module.exports){
