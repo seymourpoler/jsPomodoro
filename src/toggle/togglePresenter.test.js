@@ -22,7 +22,7 @@ describe('TogglePresenter', () => {
         it('should send an event to hide configuration section', () => {
             expect(bus.publish).toHaveBeenCalledWith('hideConfigurationSection');
         });
-    })
+    });
 
     describe('when showing configuration section is requested', () => {
         it('should send an event to show configuration section', () => {
@@ -50,6 +50,12 @@ describe('TogglePresenter', () => {
             onShowConfigurationSectionClickedHandler();
 
             expect(bus.publish).toHaveBeenLastCalledWith('hideConfigurationSection');
+        });
+    });
+
+    describe('when loading preset section is hidden', () => {
+        it('should send an event to hide configuration section', () => {
+            expect(bus.publish).toHaveBeenCalledWith('hidePresetSection');
         });
     });
 });
