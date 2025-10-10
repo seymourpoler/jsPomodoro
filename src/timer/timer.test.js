@@ -5,7 +5,7 @@ describe('Timer', function() {
     beforeEach(function() {
         vi.useFakeTimers();
     });
-    describe('when the start is requested', function() {
+    describe('when the start is requested', () => {
         it('should start the timer and call the handler at one-second intervals', () => {
             const timer = new Timer();
             const handler = vi.fn();

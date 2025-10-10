@@ -1,14 +1,14 @@
 function Time(minutes, seconds){
     const minimumNumberOfSeconds = 0;
-    let self = this;
 
+    let self = this;
     let currentSeconds = (minutes*60) + seconds;
 
-    self.getMinutes = function(){
+    self.minutes = function(){
         return Math.trunc(currentSeconds/60);
     };
 
-    self.getSeconds = function(){
+    self.seconds = function(){
         return Math.trunc(currentSeconds % 60);
     };
 
@@ -23,7 +23,11 @@ function Time(minutes, seconds){
     };
 
     self.clone = function() {
-        return new Time(self.getMinutes(), self.getSeconds());
+        return new Time(self.minutes(), self.seconds());
+    };
+
+    self.cloneWith = function(minutes, seconds) {
+        return new Time(minutes, seconds);
     };
 }
 

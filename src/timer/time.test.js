@@ -6,7 +6,7 @@ describe('time', () => {
         it('should show minutes', () =>{
             const time = new Time(9, 0);
 
-            const minutes = time.getMinutes();
+            const minutes = time.minutes();
 
             expect(minutes.toString().padStart(2, '0')).toBe('09');
         });
@@ -16,7 +16,7 @@ describe('time', () => {
         it('should show seconds', () =>{
             const time = new Time(19, 8);
 
-            const seconds = time.getSeconds();
+            const seconds = time.seconds();
 
             expect(seconds.toString().padStart(2, '0')).toBe('08');
         });
@@ -28,8 +28,8 @@ describe('time', () => {
     
             time.decreaseOneSecond();
     
-            expect(time.getMinutes()).toBe(0);
-            expect(time.getSeconds()).toBe(0);
+            expect(time.minutes()).toBe(0);
+            expect(time.seconds()).toBe(0);
         });
         
         it('should avoid negative values', () =>{
@@ -37,8 +37,8 @@ describe('time', () => {
     
             time.decreaseOneSecond();
 
-            expect(time.getMinutes()).toBe(0);
-            expect(time.getSeconds()).toBe(0);
+            expect(time.minutes()).toBe(0);
+            expect(time.seconds()).toBe(0);
         });
 
         it('should correctly handle time decrease across a minute boundary', () => {
@@ -46,8 +46,8 @@ describe('time', () => {
 
             time.decreaseOneSecond();
 
-            expect(time.getMinutes()).toBe(0);
-            expect(time.getSeconds()).toBe(59);
+            expect(time.minutes()).toBe(0);
+            expect(time.seconds()).toBe(59);
         });
     });
 });

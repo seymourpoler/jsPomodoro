@@ -1,22 +1,22 @@
 import {describe, it, expect, vi, beforeEach, afterEach} from "vitest";
-const View = require('./view');
+import{spyAllMethodsOf} from "../testing";
+const TimerView = require('./timerView');
+const Bus = require('../bus');
 const Timer = require('./timer');
 const Time = require('./time');
 const Sound = require('./sound');
-const Presenter = require('./presenter');
+const TimerPresenter = require('./timerPresenter');
 
-describe('Presenter', () =>{
-    let view;
-    let timer;
-    let time;
-    let sound;
+describe('TimerPresenter', () =>{
+    let view, bus, timer, time, sound;
 
     beforeEach(() =>{
-        view = new View();
-        timer = new Timer();
-        sound = new Sound();
-        spyAllMethodsOf(timer);
+        view = new TimerView();
         spyAllMethodsOf(view);
+        bus = new Bus();
+        timer = new Timer();
+        spyAllMethodsOf(timer);
+        sound = new Sound();
         spyAllMethodsOf(sound);
         time = new Time(25,0);
         vi.useFakeTimers()
@@ -24,9 +24,9 @@ describe('Presenter', () =>{
 
     describe('When it is loaded', () =>{
         it('show the default time', () =>{
-             new Presenter(view, timer, sound, time);
+             new TimerPresenter(view, bus, timer, sound, time);
 
-             expect(view.showTime).toHaveBeenCalled();
+             expect(view.showTime).toHaveBeenCalledWith(25, 0);
         });
     });
 
@@ -36,11 +36,11 @@ describe('Presenter', () =>{
             view.subscribeToOnResetClicked.mockImplementation((handler)=>{
                     onResetRequestedHandler = handler;
                 });
-            new Presenter(view, timer, sound, time);
+            new TimerPresenter(view, bus, timer, sound, time);
 
             onResetRequestedHandler();
 
-            expect(view.showTime).toHaveBeenCalled();
+            expect(view.showTime).toHaveBeenCalledWith(25, 0);
             expect(timer.reset).toHaveBeenCalled();
         });
     });
@@ -51,7 +51,7 @@ describe('Presenter', () =>{
             view.subscribeToOnStopClicked.mockImplementation((handler)=>{
                 onStopRequestedHandler = handler;
             });
-            new Presenter(view, timer, sound, time);
+            new TimerPresenter(view, bus, timer, sound, time);
 
             onStopRequestedHandler();
 
@@ -65,7 +65,7 @@ describe('Presenter', () =>{
             view.subscribeToOnStartClicked.mockImplementation((handler)=>{
                 onStartRequestedHandler = handler;
             });
-            new Presenter(view, timer, sound, time);
+            new TimerPresenter(view, bus, timer, sound, time);
 
             onStartRequestedHandler();
 
@@ -84,7 +84,7 @@ describe('Presenter', () =>{
             timer.start.mockImplementation((handler)=>{
                 onTimerStartRequestHandler = handler;
             });
-            new Presenter(view, timer, sound, time);
+            new TimerPresenter(view, bus, timer, sound, time);
             onStartRequestedHandler();
 
             onTimerStartRequestHandler();
@@ -95,16 +95,29 @@ describe('Presenter', () =>{
         });
     });
 
+    describe('when the configuration is updated', ()=>{
+        it('updates the time', () =>{
+            new TimerPresenter(view, bus, timer, sound, time);
+
+            bus.publish('updatedConfiguration', {minutes:35, seconds:12});
+
+            expect(view.showTime).toHaveBeenCalledWith(25, 0);
+           expect(view.showTime).toHaveBeenLastCalledWith(35, 12);
+        });
+    })
+
+    describe('when a quick preset time is selected', ()=>{
+        it('updates the time', () =>{
+            new TimerPresenter(view, bus, timer, sound, time);
+
+            bus.publish('selectedQuickPreset', {minutes: 1, seconds: 30});
+
+            expect(view.showTime).toHaveBeenCalledWith(25, 0);
+            expect(view.showTime).toHaveBeenLastCalledWith(1, 30);
+        });
+    });
+
     afterEach(()=> {
         vi.useRealTimers();
     });
 });
-
-function spyAllMethodsOf(element){
-
-    for (const property in element) {
-        if (typeof element[property] == "function") {
-            element[property] = vi.fn();
-        }
-    }
-}

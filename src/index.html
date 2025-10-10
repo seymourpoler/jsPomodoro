@@ -10,21 +10,69 @@
 <body>
 <div class="container">
     <h1>Pomodoro Timer</h1>
+
+    <!-- Configuration Section -->
+    <div id="configuration" class="config-section">
+        <h3>Timer Configuration</h3>
+        <div class="config-controls">
+            <div class="config-item">
+                <label for="config-minutes">Minutes:</label>
+                <input type="number" id="config-minutes" min="0" max="59" value="25" />
+            </div>
+            <div class="config-item">
+                <label for="config-seconds">Seconds:</label>
+                <input type="number" id="config-seconds" min="0" max="59" value="0" />
+            </div>
+            <button id="apply-config" class="config-btn">Apply</button>
+            <button id="toggle-config" class="config-btn secondary">Hide Config</button>
+        </div>
+    </div>
+
+    <!-- Timer Display -->
     <div id="timer">
-        <label id="minutes">00</label>:
+        <label id="minutes">25</label>:
         <label id="seconds">00</label>
     </div>
+
+    <!-- Timer Controls -->
     <div class="controls">
         <button id="start">Start</button>
         <button id="stop">Stop</button>
         <button id="reset">Reset</button>
     </div>
+
+    <!-- Quick Presets -->
+    <div class="presets">
+        <h4>Quick Presets</h4>
+        <button id="25minutes0seconds" class="preset-btn" data-minutes="25" data-seconds="0">Pomodoro (25:00)</button>
+        <button id="5minutes0seconds" class="preset-btn" data-minutes="5" data-seconds="0">Short Break (5:00)</button>
+        <button id="15minutes0seconds" class="preset-btn" data-minutes="15" data-seconds="0">Long Break (15:00)</button>
+        <button id="1minute30seconds" class="preset-btn" data-minutes="1" data-seconds="30">Test (1:30)</button>
+    </div>
+
+    <div class="todo-section">
+        <h3>Today's Tasks</h3>
+        <div class="todo-form">
+            <input type="text" id="taskText" class="task-input"  placeholder="Add a new task..." autocomplete="off"/>
+            <button id="addTask">Add</button>
+        </div>
+        <ul id="task-list">
+        </ul>
+    </div>
 </div>
-<script src="view.js"></script>
-<script src="presenter.js"></script>
-<script src="timer.js"></script>
-<script src="time.js"></script>
-<script src="sound.js"></script>
+
+<script src="bus.js"></script>
+<script src="configuration/configurationView.js"></script>
+<script src="configuration/configurationPresenter.js"></script>
+<script src="quickPreset/quickPresetView.js"></script>
+<script src="quickPreset/quickPresetPresenter.js"></script>
+<script src="timer/timerView.js"></script>
+<script src="timer/timerPresenter.js"></script>
+<script src="timer/timer.js"></script>
+<script src="timer/time.js"></script>
+<script src="timer/sound.js"></script>
+<script src="todoTask/TodoTaskView.js"></script>
+<script src="todoTask/todoTaskPresenter.js"></script>
+
 <script src="index.js"></script>
 </body>
-</html>
