@@ -24,6 +24,10 @@ function QuickPresetView() {
             handler();
         });
     };
+
+    self.hide = () =>{
+        throw new Error('Not implemented');
+    };
 }
 
 if(module && module.exports){
