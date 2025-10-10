@@ -1,5 +1,6 @@
 import {describe, beforeEach, it, expect} from "vitest";
 import {spyAllMethodsOf} from "../testing";
+
 const ConfigurationView = require("./configurationView");
 const ConfigurationPresenter = require("./configurationPresenter");
 const Bus = require('../bus')
