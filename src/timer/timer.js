@@ -5,7 +5,7 @@ function Timer(){
     let interval= null;
     let isRunning = false;
 
-    self.start = function (handler) {
+    self.start = (handler) => {
         if(isRunning){
             return;
         }
@@ -13,13 +13,13 @@ function Timer(){
         isRunning = true;
     };
 
-    self.stop = function (){
+    self.stop = () =>{
         clearInterval(interval);
         interval = null;
         isRunning = false;
     };
 
-    self.reset = function(){
+    self.reset = () =>{
         clearInterval(interval);
         interval = null;
         isRunning = false;

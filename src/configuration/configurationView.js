@@ -2,7 +2,7 @@ function ConfigurationView(){
     let self = this;
 
     self.subscribeToOnApplyChangesIsClicked = (handler) =>{
-        document.getElementById("apply-config").addEventListener('click', function(){
+        document.getElementById("apply-config").addEventListener('click', () =>{
             handler();
         });
     };

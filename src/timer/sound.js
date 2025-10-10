@@ -1,7 +1,7 @@
 function Sound(){
     let self = this;
 
-    self.play = function(){
+    self.play = () =>{
         const audio = new Audio('./alarm.mp3');
         audio.play();
     };

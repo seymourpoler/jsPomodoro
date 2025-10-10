@@ -4,25 +4,25 @@ function Time(minutes, seconds){
     let self = this;
     let currentSeconds = (minutes*60) + seconds;
 
-    self.minutes = function(){
+    self.minutes = () =>{
         return Math.trunc(currentSeconds/60);
     };
 
-    self.seconds = function(){
+    self.seconds = () =>{
         return Math.trunc(currentSeconds % 60);
     };
 
-    self.decreaseOneSecond = function(){
+    self.decreaseOneSecond = () =>{
         if(currentSeconds > minimumNumberOfSeconds){
             currentSeconds -= 1;
         }
     };
 
-    self.isUp = function(){
+    self.isUp = () =>{
         return currentSeconds <= minimumNumberOfSeconds;
     };
 
-    self.clone = function() {
+    self.clone = () =>{
         return new Time(self.minutes(), self.seconds());
     };
 

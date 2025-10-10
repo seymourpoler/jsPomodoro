@@ -1,8 +1,8 @@
 import {vi, describe, expect, beforeEach, afterEach, it} from "vitest";
 const Timer = require('./timer');
 
-describe('Timer', function() {
-    beforeEach(function() {
+describe('Timer', () => {
+    beforeEach(() => {
         vi.useFakeTimers();
     });
     describe('when the start is requested', () => {
