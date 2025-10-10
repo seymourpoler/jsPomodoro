@@ -87,4 +87,39 @@ describe('TogglePresenter', () => {
             expect(bus.publish).toHaveBeenLastCalledWith('hidePresetSection');
         });
     });
+
+    describe('when loading todo list section is hidden', () => {
+        it('should send an event to hide todo list section', () => {
+            expect(bus.publish).toHaveBeenCalledWith('hideTodoSection');
+        });
+    });
+
+    describe('when showing todo list section is requested', () => {
+        it('should send an event to show todo list section', () => {
+            let onShowTodoSectionClickedHandler;
+            view.subscribeToOnShowTodoSectionClicked.mockImplementation((handler)=>{
+                onShowTodoSectionClickedHandler = handler;
+            });
+            new TogglePresenter(view, bus);
+
+            onShowTodoSectionClickedHandler();
+
+            expect(bus.publish).toHaveBeenCalledWith('showTodoSection');
+        });
+    });
+
+    describe('when hiding todo list section is requested', () => {
+        it('should send an event to hide todo list section', () => {
+            let onShowTodoSectionClickedHandler;
+            view.subscribeToOnShowTodoSectionClicked.mockImplementation((handler)=>{
+                onShowTodoSectionClickedHandler = handler;
+            });
+            new TogglePresenter(view, bus);
+
+            onShowTodoSectionClickedHandler();
+            onShowTodoSectionClickedHandler();
+
+            expect(bus.publish).toHaveBeenLastCalledWith('hideTodoSection');
+        });
+    });
 });

@@ -1,15 +1,19 @@
 import {describe, beforeEach, it, expect} from "vitest";
 import {spyAllMethodsOf} from "../testing";
+import Bus from "../bus";
+import QuickPresetPresenter from "../quickPreset/quickPresetPresenter";
 
 const TodoTaskPresenter = require( "./todoTaskPresenter" );
 const TodoTaskView = require( "./TodoTaskView" );
+const Bus = require('../bus');
 
 describe('TodoTaskPresenter', () => {
-    let view;
+    let view, bus;
 
     beforeEach(() =>{
         view = new TodoTaskView();
         spyAllMethodsOf(view);
+        bus = new Bus();
     });
 
     describe('When adding new todo task is requested', () => {
@@ -23,7 +27,7 @@ describe('TodoTaskPresenter', () => {
 
         it('does not anything if task is a string empty', ()=>{
             view.task = () =>{return '';};
-            new TodoTaskPresenter(view);
+            new TodoTaskPresenter(view, bus);
 
             onAddingTaskClickedHandler();
 
@@ -32,7 +36,7 @@ describe('TodoTaskPresenter', () => {
 
         it('does not anything if task is a white space', ()=>{
             view.task = () => {return '   ';};
-            new TodoTaskPresenter(view);
+            new TodoTaskPresenter(view, bus);
 
             onAddingTaskClickedHandler();
 
@@ -41,7 +45,7 @@ describe('TodoTaskPresenter', () => {
 
         it('does not anything if task is null', ()=>{
             view.task = () => {return null;};
-            new TodoTaskPresenter(view);
+            new TodoTaskPresenter(view, bus);
 
             onAddingTaskClickedHandler();
 
@@ -50,7 +54,7 @@ describe('TodoTaskPresenter', () => {
 
         it('does not anything if task is undefined', ()=>{
             view.task = () => {return undefined;};
-            new TodoTaskPresenter(view);
+            new TodoTaskPresenter(view, bus);
 
             onAddingTaskClickedHandler();
 
@@ -59,7 +63,7 @@ describe('TodoTaskPresenter', () => {
 
         it('adds a new todo task', () =>{
             view.task = () => {return 'a-todo-task';};
-            new TodoTaskPresenter(view);
+            new TodoTaskPresenter(view, bus);
 
             onAddingTaskClickedHandler();
 
@@ -82,7 +86,7 @@ describe('TodoTaskPresenter', () => {
             });
             view.task = () =>{return 'aaaa';};
 
-            new TodoTaskPresenter(view);
+            new TodoTaskPresenter(view, bus);
         });
 
         it('removes a task', () =>{
@@ -103,6 +107,26 @@ describe('TodoTaskPresenter', () => {
             onRemovingTaskClickedHandler('bb');
 
             expect(view.showTasks).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('When hiding todo list are requested', () =>{
+        it('hides todo list', () =>{
+            new TodoTaskPresenter(view, bus);
+
+            bus.publish('hideTodoSection');
+
+            expect(view.hide).toHaveBeenCalled();
+        });
+    });
+
+    describe('When showing todo list is requested', () =>{
+        it('shows todo list', () =>{
+            new TodoTaskPresenter(view, bus);
+
+            bus.publish('showTodoSection');
+
+            expect(view.show).toHaveBeenCalled();
         });
     });
 });

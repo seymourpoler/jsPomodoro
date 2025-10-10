@@ -12,9 +12,7 @@ function TodoTaskView() {
             const clickedElement = event.target;
 
             if (clickedElement.matches('.delete-btn')) {
-                handler(
-                    clickedElement.parentElement.textContent.replace('Delete', '')
-                );
+                handler(clickedElement.parentElement.textContent.replace('Delete', ''));
             }
         });
     };
@@ -47,6 +45,14 @@ function TodoTaskView() {
 
     self.cleanTask = () => {
         return document.getElementById('taskText').value = '';
+    };
+
+    self.show = () =>{
+        document.getElementById('todo').style.display = 'block';
+    };
+
+    self.hide = () =>{
+        document.getElementById('todo').style.display = 'none';
     };
 }
 
