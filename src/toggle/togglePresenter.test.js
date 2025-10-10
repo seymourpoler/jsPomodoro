@@ -72,4 +72,19 @@ describe('TogglePresenter', () => {
             expect(bus.publish).toHaveBeenCalledWith('showPresetSection');
         });
     });
+
+    describe('when hiding preset section is requested', () => {
+        it('should send an event to hide preset section', () => {
+            let onShowPresetSectionClickedHandler;
+            view.subscribeToOnShowPresetSectionClicked.mockImplementation((handler)=>{
+                onShowPresetSectionClickedHandler = handler;
+            });
+            new TogglePresenter(view, bus);
+
+            onShowPresetSectionClickedHandler();
+            onShowPresetSectionClickedHandler();
+
+            expect(bus.publish).toHaveBeenLastCalledWith('hidePresetSection');
+        });
+    });
 });
