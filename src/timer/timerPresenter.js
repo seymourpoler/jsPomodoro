@@ -1,4 +1,4 @@
-function TimerPresenter(view, bus, timer, sound, time){
+function TimerPresenter(view, timer){
     let configuredTime = time;
     let currentTime = time.clone();
 
@@ -23,18 +23,6 @@ function TimerPresenter(view, bus, timer, sound, time){
                 timer.stop();
             }
         });
-    });
-
-    bus.subscribe('updatedConfiguration', (theEvent)=>{
-        configuredTime = time.cloneWith(theEvent.minutes, theEvent.seconds);
-        currentTime = configuredTime.clone();
-        view.showTime(currentTime.minutes(), currentTime.seconds());
-    });
-
-    bus.subscribe('selectedQuickPreset', (theEvent)=>{
-        configuredTime = time.cloneWith(theEvent.minutes, theEvent.seconds);
-        currentTime = configuredTime.clone();
-        view.showTime(currentTime.minutes(), currentTime.seconds());
     });
 }
 

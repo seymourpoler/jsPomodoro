@@ -1,10 +1,10 @@
 import {describe, it, expect, vi, beforeEach, afterEach} from "vitest";
 import{spyAllMethodsOf} from "../testing";
 const TimerView = require('./timerView');
-const Bus = require('../bus');
 const Timer = require('./timer');
 const Time = require('./time');
 const Sound = require('./sound');
+const Bus = require('../bus');
 const TimerPresenter = require('./timerPresenter');
 
 describe('TimerPresenter', () =>{
@@ -14,17 +14,17 @@ describe('TimerPresenter', () =>{
         view = new TimerView();
         spyAllMethodsOf(view);
         bus = new Bus();
-        timer = new Timer();
         spyAllMethodsOf(timer);
         sound = new Sound();
         spyAllMethodsOf(sound);
         time = new Time(25,0);
+        timer = new Timer(time, bus, sound);
         vi.useFakeTimers()
     });
 
     describe('When it is loaded', () =>{
         it('show the default time', () =>{
-             new TimerPresenter(view, bus, timer, sound, time);
+             new TimerPresenter(view, bus, timer);
 
              expect(view.showTime).toHaveBeenCalledWith(25, 0);
         });
@@ -92,28 +92,6 @@ describe('TimerPresenter', () =>{
             expect(timer.start).toHaveBeenCalled();
             expect(sound.play).toHaveBeenCalled();
             expect(timer.stop).toHaveBeenCalled();
-        });
-    });
-
-    describe('when the configuration is updated', ()=>{
-        it('updates the time', () =>{
-            new TimerPresenter(view, bus, timer, sound, time);
-
-            bus.publish('updatedConfiguration', {minutes:35, seconds:12});
-
-            expect(view.showTime).toHaveBeenCalledWith(25, 0);
-           expect(view.showTime).toHaveBeenLastCalledWith(35, 12);
-        });
-    });
-
-    describe('when a quick preset time is selected', ()=>{
-        it('updates the time', () =>{
-            new TimerPresenter(view, bus, timer, sound, time);
-
-            bus.publish('selectedQuickPreset', {minutes: 1, seconds: 30});
-
-            expect(view.showTime).toHaveBeenCalledWith(25, 0);
-            expect(view.showTime).toHaveBeenLastCalledWith(1, 30);
         });
     });
 
