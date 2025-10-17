@@ -115,6 +115,18 @@ describe('Timer', () => {
         });
     });
 
+    describe('When the timer starts', () => {
+        it('should start', () => {
+            const time = new Time(0, 2);
+            let isCalled = false;
+
+            timer.onStart(time, () =>{isCalled = true;});
+            vi.advanceTimersByTime(3000);
+
+            expect(isCalled).toBe(true);
+        });
+    });
+
     afterEach(() => {
         vi.useRealTimers();
     });

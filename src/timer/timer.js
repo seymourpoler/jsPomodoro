@@ -4,7 +4,7 @@ function Timer(sound){
     let self = this;
     let interval= null;
     let isRunning = false;
-    let onEndHandler = null;
+    let onEndHandler = () =>{};
 
     self.start = (handler) => {
         if(isRunning){
