@@ -19,31 +19,32 @@ describe('ThemePresenter', () => {
         });
     });
 
-    describe('When the dark is requested', () => {
-        it('dark theme is shown', ()=>{
-            let onDarkThemeClickedHandler;
-            view.subscribeToDarkThemeClicked.mockImplementation((handler)=>{
-                onDarkThemeClickedHandler = handler;
+    describe('When the light is requested', () => {
+        it('light theme is shown', ()=>{
+            let onChangingThemeClickedHandler;
+            view.subscribeToChangeThemeClicked.mockImplementation((handler)=>{
+                onChangingThemeClickedHandler = handler;
             });
             new ThemePresenter(view);
 
-            onDarkThemeClickedHandler();
+            onChangingThemeClickedHandler();
 
-            expect(view.showDark).toHaveBeenCalled();
+            expect(view.showLight).toHaveBeenCalled();
         });
     });
 
-    describe('When the light is requested', () => {
-        it('light theme is shown', ()=>{
-            let onLightThemeClickedHandler;
-            view.subscribeToLightThemeClicked.mockImplementation((handler)=>{
-                onLightThemeClickedHandler = handler;
+    describe('When the dark is requested', () => {
+        it('dark theme is shown', ()=>{
+            let onChangingThemeClickedHandler;
+            view.subscribeToChangeThemeClicked.mockImplementation((handler)=>{
+                onChangingThemeClickedHandler = handler;
             });
             new ThemePresenter(view);
 
-            onLightThemeClickedHandler();
+            onChangingThemeClickedHandler();
+            onChangingThemeClickedHandler();
 
-            expect(view.showLight).toHaveBeenCalled();
+            expect(view.showDark).toHaveBeenLastCalledWith();
         });
     });
 });
