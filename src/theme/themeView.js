@@ -1,17 +1,12 @@
 function ThemeView() {
     let self = this;
 
-    self.subscribeToDarkThemeClicked = ((handler) =>{
-       document.getElementById('dark-theme').addEventListener('click', () =>{
+    self.subscribeToChangeThemeClicked = ((handler) =>{
+       document.getElementById('theme').addEventListener('click', () =>{
            handler();
        });
     });
 
-    self.subscribeToLightThemeClicked = ((handler) =>{
-        document.getElementById('light-theme').addEventListener('click', () =>{
-            handler();
-        });
-    });
 
     self.showDark = () =>{
         document.body.classList.add('dark-theme');

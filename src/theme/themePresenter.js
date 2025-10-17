@@ -1,10 +1,14 @@
 function ThemePresenter(view) {
-    view.subscribeToDarkThemeClicked(() =>{
-        view.showDark();
-    });
+    let isDarkTheme = true;
 
-    view.subscribeToLightThemeClicked(() =>{
-        view.showLight();
+    view.subscribeToChangeThemeClicked(() =>{
+        if(isDarkTheme){
+            isDarkTheme = false;
+            view.showLight();
+            return;
+        }
+        isDarkTheme = true;
+        view.showDark();
     });
 
     view.showDark();
