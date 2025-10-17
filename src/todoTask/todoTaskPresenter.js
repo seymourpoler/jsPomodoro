@@ -14,7 +14,7 @@ function TodoTaskPresenter(view, bus) {
 
     view.subscribeToOnRemoveTaskClicked((aTask) =>{
         const index = tasks.indexOf(aTask);
-        if (index < 0) { // only splice array when item is found
+        if (index < 0) {
             return;
         }
         tasks.splice(index, 1);
