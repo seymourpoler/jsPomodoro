@@ -14,6 +14,7 @@ describe('Timer', () => {
         spyAllMethodsOf(sound);
         timer = new Timer(sound);
     });
+
     describe('when the start is requested', () => {
         it('should start the timer and call the handler at one-second intervals', () => {
             const handler = vi.fn();
@@ -124,6 +125,18 @@ describe('Timer', () => {
             vi.advanceTimersByTime(3000);
 
             expect(isCalled).toBe(true);
+        });
+    });
+
+    describe('When current time is requested', ()=>{
+        it('should return the current time', () => {
+            const time = new Time(12, 23);
+            timer.onStart(time, () =>{});
+            vi.advanceTimersByTime(30000);
+
+            const currentTime = timer.time();
+
+            expect(currentTime).toEqual({minutes: 11, seconds: 53});
         });
     });
 

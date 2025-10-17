@@ -5,6 +5,7 @@ function Timer(sound){
     let interval= null;
     let isRunning = false;
     let onEndHandler = () =>{};
+    let currentTime;
 
     self.start = (handler) => {
         if(isRunning){
@@ -15,12 +16,14 @@ function Timer(sound){
     };
 
     self.onStart = (time, handler) =>{
+        currentTime = time.clone();
+
         if(isRunning){
             return;
         }
         isRunning = true;
         interval = setInterval(()=>{
-            time.decreaseOneSecond();
+            currentTime.decreaseOneSecond();
             handler();
             if(time.isUp()){
                 onEndHandler();
@@ -48,6 +51,12 @@ function Timer(sound){
         clearInterval(interval);
         interval = null;
         isRunning = false;
+    };
+
+    self.time = () =>{
+        return{
+            minutes: currentTime.minutes(), seconds: currentTime.seconds()
+        };
     };
 }
 
