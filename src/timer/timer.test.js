@@ -1,13 +1,21 @@
 import {vi, describe, expect, beforeEach, afterEach, it} from "vitest";
+import {spyAllMethodsOf} from "../testing";
+
 const Timer = require('./timer');
+const Time = require('./time');
+const Sound = require('./sound');
 
 describe('Timer', () => {
+    let sound = new Sound()
+    let timer;
+
     beforeEach(() => {
         vi.useFakeTimers();
+        spyAllMethodsOf(sound);
+        timer = new Timer(sound);
     });
     describe('when the start is requested', () => {
         it('should start the timer and call the handler at one-second intervals', () => {
-            const timer = new Timer();
             const handler = vi.fn();
 
             timer.start(handler);
@@ -17,7 +25,6 @@ describe('Timer', () => {
         });
 
         it('should not start the timer if it is already running', () => {
-            const timer = new Timer();
             const handler = vi.fn();
 
             timer.start(handler);
@@ -30,7 +37,6 @@ describe('Timer', () => {
 
     describe('when the stop is requested', () => {
         it('should stop the timer', () => {
-            const timer = new Timer();
             const handler = vi.fn();
 
             timer.start(handler);
@@ -47,7 +53,6 @@ describe('Timer', () => {
 
     describe('when the reset is requested', () => {
         it('should reset the timer', () => {
-            const timer = new Timer();
             const handler = vi.fn();
             timer.start(handler);
             vi.advanceTimersByTime(1000);
@@ -59,7 +64,6 @@ describe('Timer', () => {
         });
 
         it('should reset the timer', () => {
-            const timer = new Timer();
             const handler = vi.fn();
 
             timer.start(handler);
@@ -93,6 +97,21 @@ describe('Timer', () => {
                 expect(() => timer.stop()).not.toThrow();
                 expect(() => timer.reset()).not.toThrow();
             });
+        });
+    });
+
+    describe('When the timer ends', () => {
+        it('should stop', () => {
+            const time = new Time(0, 2);
+            let isCalled = false;
+            timer.onEnd(() =>{
+                isCalled = true;
+            });
+
+            timer.onStart(time, () =>{});
+            vi.advanceTimersByTime(3000);
+
+            expect(isCalled).toBe(true);
         });
     });
 
