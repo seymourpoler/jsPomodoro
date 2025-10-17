@@ -1,18 +1,22 @@
-import {vi, describe, expect, beforeEach, afterEach, it} from "vitest";
+import {afterEach, beforeEach, describe, expect, it, vi} from "vitest";
 import {spyAllMethodsOf} from "../testing";
+import TimerPresenter from "./timerPresenter";
 
 const Timer = require('./timer');
 const Time = require('./time');
 const Sound = require('./sound');
+const Bus = require('../bus');
 
 describe('Timer', () => {
     let sound = new Sound()
+    let bus = new Bus();
     let timer;
 
     beforeEach(() => {
         vi.useFakeTimers();
         spyAllMethodsOf(sound);
-        timer = new Timer(sound);
+        // spyAllMethodsOf(bus);
+        timer = new Timer(new Time(0,0), bus, sound);
     });
 
     describe('when the start is requested', () => {
@@ -137,6 +141,26 @@ describe('Timer', () => {
             const currentTime = timer.time();
 
             expect(currentTime).toEqual({minutes: 11, seconds: 53});
+        });
+    });
+
+    describe('When the configuration is updated', ()=>{
+        it('updates the time', () =>{
+            bus.publish('updatedConfiguration', {minutes:35, seconds:12});
+
+            const currentTime = timer.time();
+
+            expect(currentTime).toEqual({minutes: 35, seconds: 12});
+        });
+    });
+
+    describe('When a quick preset time is selected', ()=>{
+        it('updates the time', () =>{
+            bus.publish('selectedQuickPreset', {minutes:35, seconds:12});
+
+            const currentTime = timer.time();
+
+            expect(currentTime).toEqual({minutes: 35, seconds: 12});
         });
     });
 

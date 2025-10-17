@@ -104,7 +104,7 @@ describe('TimerPresenter', () =>{
             expect(view.showTime).toHaveBeenCalledWith(25, 0);
            expect(view.showTime).toHaveBeenLastCalledWith(35, 12);
         });
-    })
+    });
 
     describe('when a quick preset time is selected', ()=>{
         it('updates the time', () =>{

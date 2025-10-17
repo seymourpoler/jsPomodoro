@@ -1,11 +1,19 @@
-function Timer(sound){
+function Timer(time, bus, sound){
     const oneSecond = 1000;
 
     let self = this;
     let interval= null;
     let isRunning = false;
     let onEndHandler = () =>{};
-    let currentTime;
+    let currentTime = time.clone();
+
+    bus.subscribe('updatedConfiguration', (theEvent)=>{
+        currentTime = currentTime.cloneWith(theEvent.minutes, theEvent.seconds);
+    });
+
+    bus.subscribe('selectedQuickPreset', (theEvent)=>{
+        currentTime = currentTime.cloneWith(theEvent.minutes, theEvent.seconds);
+    });
 
     self.start = (handler) => {
         if(isRunning){
@@ -15,8 +23,8 @@ function Timer(sound){
         isRunning = true;
     };
 
-    self.onStart = (time, handler) =>{
-        currentTime = time.clone();
+    self.onStart = (aTime, handler) =>{
+        currentTime = aTime.clone();
 
         if(isRunning){
             return;
