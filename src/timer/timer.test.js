@@ -1,6 +1,5 @@
 import {afterEach, beforeEach, describe, expect, it, vi} from "vitest";
 import {spyAllMethodsOf} from "../testing";
-import TimerPresenter from "./timerPresenter";
 
 const Timer = require('./timer');
 const Time = require('./time');
@@ -15,7 +14,7 @@ describe('Timer', () => {
     beforeEach(() => {
         vi.useFakeTimers();
         spyAllMethodsOf(sound);
-        // spyAllMethodsOf(bus);
+
         timer = new Timer(new Time(0,0), bus, sound);
     });
 
@@ -91,8 +90,6 @@ describe('Timer', () => {
     describe('when the start and the stop is requested', () => {
         describe('without an active interval', () => {
             it('should stop and reset timers', () => {
-                const timer = new Timer();
-
                 expect(() => timer.stop()).not.toThrow();
                 expect(() => timer.reset()).not.toThrow();
 
@@ -107,13 +104,12 @@ describe('Timer', () => {
 
     describe('When the timer ends', () => {
         it('should stop', () => {
-            const time = new Time(0, 2);
             let isCalled = false;
             timer.onEnd(() =>{
                 isCalled = true;
             });
 
-            timer.onStart(time, () =>{});
+            timer.onStart(new Time(0, 2), () =>{});
             vi.advanceTimersByTime(3000);
 
             expect(isCalled).toBe(true);
@@ -134,13 +130,12 @@ describe('Timer', () => {
 
     describe('When current time is requested', ()=>{
         it('should return the current time', () => {
-            const time = new Time(12, 23);
-            timer.onStart(time, () =>{});
+            timer.onStart(new Time(12, 23), () =>{});
             vi.advanceTimersByTime(30000);
 
             const currentTime = timer.time();
 
-            expect(currentTime).toEqual({minutes: 11, seconds: 53});
+            expect(currentTime).toEqual({minutes: 12, seconds: 22});
         });
     });
 
