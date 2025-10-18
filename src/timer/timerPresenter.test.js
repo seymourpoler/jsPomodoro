@@ -1,9 +1,9 @@
 import {describe, it, expect, vi, beforeEach, afterEach} from "vitest";
 import{spyAllMethodsOf} from "../testing";
+
 const TimerView = require('./timerView');
 const Timer = require('./timer');
 const Time = require('./time');
-const Sound = require('./sound');
 const Bus = require('../bus');
 const TimerPresenter = require('./timerPresenter');
 
@@ -14,19 +14,18 @@ describe('TimerPresenter', () =>{
         view = new TimerView();
         spyAllMethodsOf(view);
         bus = new Bus();
+        spyAllMethodsOf(bus);
+        timer = new Timer(new Time(25, 0), bus);
         spyAllMethodsOf(timer);
-        sound = new Sound();
-        spyAllMethodsOf(sound);
-        time = new Time(25,0);
-        timer = new Timer(time, bus, sound);
-        vi.useFakeTimers()
+        timer.time = () => {return { minutes: 25, seconds: 0 }};
+        timer.clone = () =>{return timer;};
     });
 
     describe('When it is loaded', () =>{
         it('show the default time', () =>{
-             new TimerPresenter(view, bus, timer);
+             new TimerPresenter(view, timer);
 
-             expect(view.showTime).toHaveBeenCalledWith(25, 0);
+             expect(view.showTime).toHaveBeenCalledWith({minutes: 25, seconds: 0});
         });
     });
 
@@ -36,11 +35,11 @@ describe('TimerPresenter', () =>{
             view.subscribeToOnResetClicked.mockImplementation((handler)=>{
                     onResetRequestedHandler = handler;
                 });
-            new TimerPresenter(view, bus, timer, sound, time);
+            new TimerPresenter(view, timer);
 
             onResetRequestedHandler();
 
-            expect(view.showTime).toHaveBeenCalledWith(25, 0);
+            expect(view.showTime).toHaveBeenCalledWith({minutes: 25, seconds: 0});
             expect(timer.reset).toHaveBeenCalled();
         });
     });
@@ -51,7 +50,7 @@ describe('TimerPresenter', () =>{
             view.subscribeToOnStopClicked.mockImplementation((handler)=>{
                 onStopRequestedHandler = handler;
             });
-            new TimerPresenter(view, bus, timer, sound, time);
+            new TimerPresenter(view, timer);
 
             onStopRequestedHandler();
 
@@ -65,7 +64,7 @@ describe('TimerPresenter', () =>{
             view.subscribeToOnStartClicked.mockImplementation((handler)=>{
                 onStartRequestedHandler = handler;
             });
-            new TimerPresenter(view, bus, timer, sound, time);
+            new TimerPresenter(view, timer);
 
             onStartRequestedHandler();
 
@@ -75,7 +74,6 @@ describe('TimerPresenter', () =>{
 
     describe('when the time is up', ()=>{
         it('should play a sound and timer stops', () =>{
-            const time = new Time(0, 1);
             let onStartRequestedHandler;
             view.subscribeToOnStartClicked.mockImplementation((handler)=>{
                 onStartRequestedHandler = handler;
@@ -84,7 +82,7 @@ describe('TimerPresenter', () =>{
             timer.start.mockImplementation((handler)=>{
                 onTimerStartRequestHandler = handler;
             });
-            new TimerPresenter(view, bus, timer, sound, time);
+            new TimerPresenter(view, timer);
             onStartRequestedHandler();
 
             onTimerStartRequestHandler();

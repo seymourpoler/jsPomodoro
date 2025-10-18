@@ -1,13 +1,10 @@
 function TimerPresenter(view, timer){
-    let configuredTime = time;
-    let currentTime = time.clone();
 
-    view.showTime(currentTime.minutes(), currentTime.seconds());
+    view.showTime(timer.time());
 
     view.subscribeToOnResetClicked(()=>{
         timer.reset();
-        currentTime = configuredTime.clone();
-        view.showTime(currentTime.minutes(), currentTime.seconds());
+        view.showTime(timer.time());
     });
 
     view.subscribeToOnStopClicked(() =>{
@@ -15,13 +12,8 @@ function TimerPresenter(view, timer){
     });
 
     view.subscribeToOnStartClicked(() => {
-        timer.start(() =>{
-            currentTime.decreaseOneSecond();
-            view.showTime(currentTime.minutes(), currentTime.seconds());
-            if(currentTime.isUp()){
-                sound.play();
-                timer.stop();
-            }
+        timer.onStart(() =>{
+            view.showTime(timer.time());
         });
     });
 }

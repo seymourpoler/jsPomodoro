@@ -23,9 +23,7 @@ function Timer(time, bus, sound){
         isRunning = true;
     };
 
-    self.onStart = (aTime, handler) =>{
-        currentTime = aTime.clone();
-
+    self.onStart = (handler) =>{
         if(isRunning){
             return;
         }
@@ -34,7 +32,6 @@ function Timer(time, bus, sound){
             currentTime.decreaseOneSecond();
             handler();
             if(time.isUp()){
-                onEndHandler();
                 sound.play();
                 self.stop();
             }
