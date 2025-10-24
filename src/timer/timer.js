@@ -4,14 +4,7 @@ function Timer(){
     let self = this;
     let interval= null;
     let isRunning = false;
-
-    self.start = (handler) => {
-        if(isRunning){
-            return;
-        }
-        interval = setInterval(handler, oneSecond);
-        isRunning = true;
-    };
+    let onEndHandler = ()=>{} ;
 
     self.stop = () =>{
         clearInterval(interval);
@@ -23,6 +16,25 @@ function Timer(){
         clearInterval(interval);
         interval = null;
         isRunning = false;
+    };
+
+    self.onStart = (time, handler) =>{
+        if(isRunning){
+            return;
+        }
+        isRunning = true;
+        interval = setInterval(() =>{
+            time.decreaseOneSecond();
+            handler(time.minutes(), time.seconds());
+            if(time.isUp()) {
+                onEndHandler();
+            }
+        }, oneSecond);
+    };
+
+    self.onEnd = (handler) =>{
+        isRunning = false;
+        onEndHandler = handler;
     };
 }
 

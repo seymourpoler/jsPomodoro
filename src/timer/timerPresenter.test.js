@@ -69,7 +69,8 @@ describe('TimerPresenter', () =>{
 
             onStartRequestedHandler();
 
-            expect(timer.start).toHaveBeenCalled();
+            expect(timer.onStart).toHaveBeenCalled();
+            expect(timer.onEnd).toHaveBeenCalled();
         });
     });
 
@@ -80,18 +81,18 @@ describe('TimerPresenter', () =>{
             view.subscribeToOnStartClicked.mockImplementation((handler)=>{
                 onStartRequestedHandler = handler;
             });
-            let onTimerStartRequestHandler;
-            timer.start.mockImplementation((handler)=>{
-                onTimerStartRequestHandler = handler;
+            let onEndHandler;
+            timer.onEnd.mockImplementation((handler)=>{
+                onEndHandler = handler;
             });
             new TimerPresenter(view, bus, timer, sound, time);
             onStartRequestedHandler();
 
-            onTimerStartRequestHandler();
+            onEndHandler();
 
-            expect(timer.start).toHaveBeenCalled();
+            expect(timer.onStart).toHaveBeenCalled();
+            expect(timer.onEnd).toHaveBeenCalled();
             expect(sound.play).toHaveBeenCalled();
-            expect(timer.stop).toHaveBeenCalled();
         });
     });
 

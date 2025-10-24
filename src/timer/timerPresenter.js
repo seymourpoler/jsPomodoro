@@ -15,13 +15,12 @@ function TimerPresenter(view, bus, timer, sound, time){
     });
 
     view.subscribeToOnStartClicked(() => {
-        timer.start(() =>{
-            currentTime.decreaseOneSecond();
-            view.showTime(currentTime.minutes(), currentTime.seconds());
-            if(currentTime.isUp()){
-                sound.play();
-                timer.stop();
-            }
+        timer.onStart(currentTime, (minutes, seconds) =>{
+            view.showTime(minutes, seconds);
+        });
+        timer.onEnd(() =>{
+            sound.play();
+            timer.stop();
         });
     });
 
