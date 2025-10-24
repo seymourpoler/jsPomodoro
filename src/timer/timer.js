@@ -6,14 +6,6 @@ function Timer(){
     let isRunning = false;
     let onEndHandler = ()=>{} ;
 
-    self.start = (handler) => {
-        if(isRunning){
-            return;
-        }
-        interval = setInterval(handler, oneSecond);
-        isRunning = true;
-    };
-
     self.stop = () =>{
         clearInterval(interval);
         interval = null;

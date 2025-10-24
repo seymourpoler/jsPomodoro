@@ -14,7 +14,7 @@ describe('Timer', () => {
         it('should start the timer and call the handler at one-second intervals', () => {
             const handler = vi.fn();
 
-            timer.start(handler);
+            timer.onStart(new Time(0,4), handler);
 
             vi.advanceTimersByTime(3000);
             expect(handler).toHaveBeenCalledTimes(3);
