@@ -4,6 +4,7 @@ function Timer(){
     let self = this;
     let interval= null;
     let isRunning = false;
+    let onEndHandler = ()=>{} ;
 
     self.start = (handler) => {
         if(isRunning){
@@ -23,6 +24,14 @@ function Timer(){
         clearInterval(interval);
         interval = null;
         isRunning = false;
+    };
+
+    self.onStart = (time, handler) =>{
+        setInterval(handler, oneSecond);
+    };
+
+    self.onEnd = (handler) =>{
+        onEndHandler = handler;
     };
 }
 

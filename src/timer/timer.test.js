@@ -1,5 +1,6 @@
 import {vi, describe, expect, beforeEach, afterEach, it} from "vitest";
 const Timer = require('./timer');
+const Time = require('./time');
 
 describe('Timer', () => {
     let timer;
@@ -95,6 +96,14 @@ describe('Timer', () => {
 
     describe('when the end is requested', () => {
         it('should end timers', () => {
+            let wasCalled = false;
+            timer.start(new Time(0, 2), () =>{});
+            timer.onEnd(() =>{
+                wasCalled = true;
+            });
+            vi.advanceTimersByTime(10000);
+
+            expect(wasCalled).toBe(true);
         });
     });
 
