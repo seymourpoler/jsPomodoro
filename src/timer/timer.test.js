@@ -97,13 +97,13 @@ describe('Timer', () => {
     describe('when the end is requested', () => {
         it('should end timers', () => {
             let wasCalled = false;
-            timer.start(new Time(0, 2), () =>{});
+            timer.onStart(new Time(0, 2), (minutes, seconds) =>{});
             timer.onEnd(() =>{
                 wasCalled = true;
             });
             vi.advanceTimersByTime(10000);
 
-            expect(wasCalled).toBe(true);
+            expect(wasCalled).toBeTruthy();
         });
     });
 
