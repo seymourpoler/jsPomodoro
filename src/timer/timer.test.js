@@ -35,7 +35,7 @@ describe('Timer', () => {
         it('should stop the timer', () => {
             const handler = vi.fn();
 
-            timer.start(handler);
+            timer.onStart(new Time(1,3), handler);
 
             vi.advanceTimersByTime(2000);
             expect(handler).toHaveBeenCalledTimes(2);
