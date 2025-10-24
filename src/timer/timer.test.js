@@ -50,7 +50,7 @@ describe('Timer', () => {
     describe('when the reset is requested', () => {
         it('should reset the timer', () => {
             const handler = vi.fn();
-            timer.start(handler);
+            timer.onStart(new Time(3, 5), handler);
             vi.advanceTimersByTime(1000);
 
             timer.reset();
@@ -62,7 +62,7 @@ describe('Timer', () => {
         it('should reset the timer', () => {
             const handler = vi.fn();
 
-            timer.start(handler);
+            timer.onStart(new Time(2, 6), handler);
 
             vi.advanceTimersByTime(1000);
             expect(handler).toHaveBeenCalledTimes(1);
@@ -72,7 +72,7 @@ describe('Timer', () => {
             vi.advanceTimersByTime(1000);
             expect(handler).toHaveBeenCalledTimes(1);
 
-            timer.start(handler);
+            timer.onStart(new Time(2, 5),  handler);
             vi.advanceTimersByTime(1000);
             expect(handler).toHaveBeenCalledTimes(2);
         });
@@ -85,7 +85,7 @@ describe('Timer', () => {
                 expect(() => timer.stop()).not.toThrow();
                 expect(() => timer.reset()).not.toThrow();
 
-                timer.start(()=>{});
+                timer.onStart(new Time(3, 6), ()=>{});
                 timer.stop();
 
                 expect(() => timer.stop()).not.toThrow();
