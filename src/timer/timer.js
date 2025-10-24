@@ -27,7 +27,7 @@ function Timer(){
     };
 
     self.onStart = (time, handler) =>{
-        setInterval(() =>{
+        interval = setInterval(() =>{
             time.decreaseOneSecond();
             handler(time.minutes(), time.seconds());
             if(time.isUp()) {

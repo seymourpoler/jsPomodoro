@@ -69,7 +69,8 @@ describe('TimerPresenter', () =>{
 
             onStartRequestedHandler();
 
-            expect(timer.start).toHaveBeenCalled();
+            expect(timer.onStart).toHaveBeenCalled();
+            expect(timer.onEnd).toHaveBeenCalled();
         });
     });
 
