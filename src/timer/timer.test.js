@@ -23,8 +23,8 @@ describe('Timer', () => {
         it('should not start the timer if it is already running', () => {
             const handler = vi.fn();
 
-            timer.start(handler);
-            timer.start(handler);
+            timer.onStart(new Time(0,1),(handler));
+            timer.onStart(new Time(0,1),(handler))
 
             vi.advanceTimersByTime(1000);
             expect(handler).toHaveBeenCalledTimes(1);

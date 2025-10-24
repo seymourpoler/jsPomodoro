@@ -19,6 +19,10 @@ function Timer(){
     };
 
     self.onStart = (time, handler) =>{
+        if(isRunning){
+            return;
+        }
+        isRunning = true;
         interval = setInterval(() =>{
             time.decreaseOneSecond();
             handler(time.minutes(), time.seconds());
@@ -29,6 +33,7 @@ function Timer(){
     };
 
     self.onEnd = (handler) =>{
+        isRunning = false;
         onEndHandler = handler;
     };
 }
