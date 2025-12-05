@@ -1,20 +1,16 @@
 {
-  "name": "client",
-  "version": "1.0.0",
+  "name": "timer-client",
+  "private": true,
+  "version": "0.0.0",
   "type": "module",
-  "main": "main.ts",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/seymourpoler/jsPomodoro.git"
-  },
   "dependencies": {
-    "socket.io-client": "^4.8.1"
+    "socket.io-client": "^4.7.4"
   },
   "devDependencies": {
     "typescript": "^5.2.2",

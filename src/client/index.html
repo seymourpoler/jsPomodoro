@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Hello</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collaborative Timer</title>
 </head>
 <body>
+<div id="container">
+    <!-- This is where we display the time -->
+    <div id="app">25:00</div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button id="start">Start</button>
+        <button id="pause" disabled>Pause</button>
+        <button id="reset">Reset</button>
+    </div>
+</div>
+
+<script type="module" src="main.ts"></script>
 
 </body>
 </html>
