@@ -9,5 +9,10 @@ socket.on("connect", () => {
 
 socket.on("sync", (serverState: TimerState) => {
     console.log("Received Sync:", serverState);
-    console.log(serverState);
+});
+
+const start = document.getElementById('start')!;
+start.addEventListener('click', () => {
+    console.log("clicked start button ");
+    socket.emit("start");
 });

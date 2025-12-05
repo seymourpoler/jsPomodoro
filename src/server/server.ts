@@ -2,7 +2,10 @@ import{TimerState} from "./timerState";
 import { Server } from "socket.io";
 
 const io = new Server(3000, {
-    cors: { origin: "*" } // Allow connections from Vite
+    cors: {
+        origin: ["http://localhost:5173", "http://127.0.0.1:5173"], // Allow Vite
+        methods: ["GET", "POST"]
+    }
 });
 
 io.on("connection", (socket) => {
@@ -11,7 +14,7 @@ io.on("connection", (socket) => {
 
 io.on("start", (socket) => {
     console.log("Client started:", socket.id);
-    
+
     const timerState:TimerState = {
         isRunning: true
     };
