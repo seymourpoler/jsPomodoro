@@ -1,18 +1,54 @@
-import { io } from "socket.io-client";
-import {TimerState} from "./timerState";
+import { io, Socket } from 'socket.io-client';
 
-const socket = io("http://localhost:3000");
+// 1. Define Types (Same as Server)
+interface ServerToClientEvents {
+    receive_message: (data: { message: string; sender: string }) => void;
+}
 
-socket.on("connect", () => {
-    console.log("Connected to server!");
+interface ClientToServerEvents {
+    send_message: (data: { message: string; sender: string }) => void;
+}
+
+// 2. Initialize Socket
+const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io('http://localhost:3001');
+
+// 3. Select DOM Elements
+// We use 'as HTMLElement' so TypeScript knows exactly what properties are available
+const messageContainer = document.querySelector<HTMLDivElement>('#messages')!;
+const messageForm = document.querySelector<HTMLFormElement>('#chat-form')!;
+const messageInput = document.querySelector<HTMLInputElement>('#message-input')!;
+
+// 4. Handle Incoming Messages
+socket.on('receive_message', (data) => {
+    appendMessage(data.sender, data.message);
 });
 
-socket.on("sync", (serverState: TimerState) => {
-    console.log("Received Sync:", serverState);
+// 5. Handle Form Submission
+messageForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Stop page reload
+
+    const message = messageInput.value;
+
+    if (message.trim() !== "") {
+        // Send to server
+        socket.emit('send_message', {
+            message: message,
+            sender: socket.id || "Anonymous"
+        });
+
+        // Clear input
+        messageInput.value = '';
+    }
 });
 
-const start = document.getElementById('start')!;
-start.addEventListener('click', () => {
-    console.log("clicked start button ");
-    socket.emit("start");
-});
+// Helper function to update the DOM
+function appendMessage(sender: string, text: string) {
+    const messageElement = document.createElement('div');
+    messageElement.className = 'message-item';
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${text}`;
+
+    messageContainer.appendChild(messageElement);
+
+    // Auto-scroll to the bottom
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+}

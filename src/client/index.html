@@ -3,22 +3,30 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Collaborative Timer</title>
+    <title>Vanilla TS Chat</title>
+    <style>
+        /* Simple styling to make it look decent */
+        body { font-family: sans-serif; padding: 20px; }
+        #messages {
+            border: 1px solid #ccc;
+            height: 300px;
+            overflow-y: scroll;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .message-item { margin-bottom: 5px; }
+    </style>
 </head>
 <body>
-<div id="container">
-    <!-- This is where we display the time -->
-    <div id="app">25:00</div>
+<h1>Vanilla TS Chat</h1>
 
-    <!-- Controls -->
-    <div class="controls">
-        <button id="start">Start</button>
-        <button id="pause" disabled>Pause</button>
-        <button id="reset">Reset</button>
-    </div>
-</div>
+<div id="messages"></div>
+
+<form id="chat-form">
+    <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off" />
+    <button type="submit">Send</button>
+</form>
 
 <script type="module" src="main.ts"></script>
-
 </body>
 </html>
