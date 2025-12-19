@@ -7,19 +7,22 @@ const app = express();
 app.use(cors());
 
 const server = http.createServer(app);
+let counter = 0;
+let timerInterval: NodeJS.Timeout | null = null;
 
 interface ServerToClientEvents {
     receive_message: (data: { message: string, sender: string }) => void;
+    timer_update: (time: number) => void;
 }
 
 interface ClientToServerEvents {
     send_message: (data: { message: string, sender: string }) => void;
+    start : (sender: string) => void;
 }
 
-// 2. Initialize Socket.io with the types
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
     cors: {
-        origin: "http://localhost:5173", // Allow your Vite client
+        origin: "http://localhost:5173",
         methods: ["GET", "POST"],
     },
 });
@@ -27,10 +30,19 @@ const io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
 io.on("connection", (socket) => {
     console.log(`User connected: ${socket.id}`);
 
-    // 3. Listen for messages from client
     socket.on("send_message", (data) => {
         // Broadcast the message to everyone (including sender)
+        console.log('message received', data);
         io.emit("receive_message", data);
+    });
+
+    socket.on('start', (sender) =>{
+        console.log(`User started: ${sender}`);
+        timerInterval = setInterval(() => {
+            counter++;
+            // Broadcast the new counter value to EVERYONE
+            io.emit("timer_update", counter);
+        }, 1000);
     });
 });
 

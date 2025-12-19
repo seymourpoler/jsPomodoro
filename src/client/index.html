@@ -23,8 +23,14 @@
 <div id="messages"></div>
 
 <form id="chat-form">
+    <div id="timer">
+        <label id="minutes">25</label>:
+        <label id="seconds">00</label>
+    </div>
     <input type="text" id="message-input" placeholder="Type a message..." autocomplete="off" />
-    <button type="submit">Send</button>
+    <button id="send">Send</button>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
 </form>
 
 <script type="module" src="index.ts"></script>
