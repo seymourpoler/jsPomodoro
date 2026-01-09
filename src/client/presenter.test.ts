@@ -29,6 +29,20 @@ describe('Presenter', () => {
         });
     });
 
+    describe("When Stop is requested", () => {
+        it('Stops', () =>{
+            let onStopIsRequestedHandler = () =>{};
+            (view.subscribeWhenStopIsRequested as any).mockImplementation((handler: any) => {
+                onStopIsRequestedHandler = handler;
+            });
+            new Presenter(view, service);
+
+            onStopIsRequestedHandler();
+
+            expect(service.stop).toHaveBeenCalled();
+        });
+    });
+
     describe("When timer is updated", () => {
         describe("When timer is updated", () => {
             it('shows the time', () => {

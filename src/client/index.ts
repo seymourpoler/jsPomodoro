@@ -26,13 +26,13 @@ document.getElementById('send')?.addEventListener('click', (event: Event) => {
 //     });
 // });
 
-document.getElementById('stop')?.addEventListener('click', (event: Event) => {
-    event.preventDefault();
-
-    socket.emit('stop',{
-        sender: socket.id || "Anonymous",
-    });
-});
+// document.getElementById('stop')?.addEventListener('click', (event: Event) => {
+//     event.preventDefault();
+//
+//     socket.emit('stop',{
+//         sender: socket.id || "Anonymous",
+//     });
+// });
 
 document.getElementById('reset')?.addEventListener('click', (event: Event) => {
     event.preventDefault();

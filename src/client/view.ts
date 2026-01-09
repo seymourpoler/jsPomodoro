@@ -7,6 +7,14 @@ export class View {
         });
     }
 
+    public subscribeWhenStopIsRequested(handler: () => void){
+        document.getElementById('stop')?.addEventListener('click', (event: Event) => {
+            event.preventDefault();
+
+            handler();
+        });
+    }
+
     public showTime(minutes: number, seconds: number){
         const minutesEl = document.getElementById('minutes');
         const secondsEl = document.getElementById('seconds');

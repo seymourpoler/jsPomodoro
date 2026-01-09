@@ -4,12 +4,17 @@ import {Service} from "./service";
 export class Presenter {
     constructor(private readonly view: View, private readonly service: Service) {
         view.subscribeWhenStartIsRequested(this.onStartIsRequestedHandler);
+        view.subscribeWhenStopIsRequested(this.onStopIsRequestedHandler)
         service.subscribeWhenTimeIsUpdated(this.onTimeIsUpdatedHandler);
     }
 
     private onStartIsRequestedHandler = (): void => {
         this.service.start();
     }
+
+    private onStopIsRequestedHandler = (): void => {
+        this.service.stop();
+    };
 
     private onTimeIsUpdatedHandler = (time: number): void => {
         const minutes = Math.floor(time / 60);

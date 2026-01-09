@@ -13,6 +13,12 @@ export class Service{
         });
     }
 
+    public stop() : void {
+        this.socket.emit('stop',{
+            sender: this.socket.id || "Anonymous",
+        });
+    }
+
     public subscribeWhenTimeIsUpdated(handler:(time: number)=>void):void {
         this.socket.on('timer_update', (time: number) => {
             handler(time);
