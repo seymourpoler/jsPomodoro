@@ -1,4 +1,4 @@
-import { io, Socket } from 'socket.io-client';
+import {io, Socket} from 'socket.io-client';
 import {ServerToClientEvents} from "./serverToClientEvents";
 import {ClientToServerEvents} from "./clientToServerEvents";
 
@@ -7,7 +7,6 @@ export class Service{
 
     constructor(){
         this.socket = io('http://localhost:3001');
-
     }
 
     public start() : void {
