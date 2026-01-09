@@ -1,17 +1,16 @@
 import {io, Socket} from 'socket.io-client';
-import {ServerToClientEvents} from "./serverToClientEvents";
-import {ClientToServerEvents} from "./clientToServerEvents";
 
 export class Service{
-    private readonly socket: Socket<ServerToClientEvents, ClientToServerEvents>;
+    private readonly socket: Socket;
 
     constructor(){
         this.socket = io('http://localhost:3001');
     }
 
     public start() : void {
-        const sender = this.socket.id || "";
-        this.socket.emit('start', sender);
+        this.socket.emit('start',{
+            sender: this.socket.id || "Anonymous",
+        });
     }
 
     public subscribeWhenTimeIsUpdated(handler:(time: number)=>void):void {

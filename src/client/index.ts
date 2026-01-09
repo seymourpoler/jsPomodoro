@@ -18,13 +18,13 @@ document.getElementById('send')?.addEventListener('click', (event: Event) => {
     });
 });
 
-document.getElementById('start')?.addEventListener('click', (event: Event) => {
-    event.preventDefault();
-
-    socket.emit('start',{
-        sender: socket.id || "Anonymous",
-    });
-});
+// document.getElementById('start')?.addEventListener('click', (event: Event) => {
+//     event.preventDefault();
+//
+//     socket.emit('start',{
+//         sender: socket.id || "Anonymous",
+//     });
+// });
 
 document.getElementById('stop')?.addEventListener('click', (event: Event) => {
     event.preventDefault();
