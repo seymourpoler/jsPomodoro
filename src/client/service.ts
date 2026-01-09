@@ -26,7 +26,7 @@ export class Service{
     }
 
     public subscribeWhenTimeIsUpdated(handler:(time: number)=>void):void {
-        this.socket.on('timer_update', (time: number) => {
+        this.socket.on('updated_time', (time: number) => {
             handler(time);
         });
     }

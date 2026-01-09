@@ -64,8 +64,8 @@ describe('Presenter', () => {
                 (service.subscribeWhenTimeIsUpdated as any).mockImplementation((handler: any) => {
                     onTimerIsUpdatedHandler = handler;
                 });
-
                 new Presenter(view, service);
+
                 onTimerIsUpdatedHandler(25, 0);
 
                 expect(view.showTime).toHaveBeenCalled();

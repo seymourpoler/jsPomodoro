@@ -1,4 +1,4 @@
-import {io, Socket} from 'socket.io-client';
+import {io} from 'socket.io-client';
 import {Service} from "./service";
 import {View} from "./view";
 import {Presenter} from "./presenter";
@@ -25,17 +25,6 @@ socket.on('receive_message', (data) => {
     messageContainer.appendChild(messageElement);
     // Auto-scroll to the bottom
     messageContainer.scrollTop = messageContainer.scrollHeight;
-});
-
-socket.on('updated_time', (time) => {
-    // const minutes = document.getElementById('minutes');
-    // if(minutes) minutes.innerHTML = time.minutes;
-    //
-    // const hours = document.getElementById('hours');
-    // if(hours) hours.innerText = time.hours;
-
-    const minutes = document.getElementById('minutes');
-    if(minutes) minutes.innerHTML = time;
 });
 
 const service = new Service();
