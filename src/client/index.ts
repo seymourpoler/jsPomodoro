@@ -34,6 +34,12 @@ document.getElementById('stop')?.addEventListener('click', (event: Event) => {
     });
 });
 
+document.getElementById('reset')?.addEventListener('click', (event: Event) => {
+    event.preventDefault();
+
+    socket.emit('reset');
+});
+
 // 4. Handle Incoming Messages
 socket.on('receive_message', (data) => {
     const messageElement = document.createElement('div');

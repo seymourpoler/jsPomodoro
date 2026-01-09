@@ -8,7 +8,7 @@ app.use(cors());
 
 const server = http.createServer(app);
 let numberOfSeconds = 0;
-var timerInterval: NodeJS.Timeout | undefined = undefined;
+let timerInterval: NodeJS.Timeout | undefined = undefined;
 
 const io = new Server(server, {
     cors: {
@@ -29,6 +29,11 @@ io.on("connection", (socket) => {
     socket.on('start', (sender) =>{
         console.log(`User started: ${sender}`);
 
+        if (timerInterval) {
+            console.log("Timer already running, ignoring start request");
+            return;
+        }
+
         timerInterval = setInterval(() => {
             numberOfSeconds++;
             // Broadcast the new numberOfSeconds value to EVERYONE
@@ -38,8 +43,21 @@ io.on("connection", (socket) => {
 
     socket.on("stop", () => {
         console.log(`User stop: ${socket.id}`);
-        clearInterval(timerInterval);
-        timerInterval = undefined;
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = undefined; // Reset to undefined so it can be started again
+            console.log("Timer stopped successfully");
+        }
+    });
+
+    socket.on('reset', (sender) => {
+        console.log(`User reset: ${socket.id}`);
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = undefined;
+        }
+        numberOfSeconds = 0;
+        io.emit("updated_time", numberOfSeconds);
     });
 });
 
