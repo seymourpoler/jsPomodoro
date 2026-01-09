@@ -15,6 +15,14 @@ export class View {
         });
     }
 
+    public subscribeWhenResetIsRequested(handler: () => void){
+        document.getElementById('reset')?.addEventListener('click', (event: Event) => {
+            event.preventDefault();
+
+            handler();
+        });
+    }
+
     public showTime(minutes: number, seconds: number){
         const minutesEl = document.getElementById('minutes');
         const secondsEl = document.getElementById('seconds');

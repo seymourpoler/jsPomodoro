@@ -43,6 +43,20 @@ describe('Presenter', () => {
         });
     });
 
+    describe("When Reset is requested", () => {
+        it('Resets', () =>{
+            let onResetIsRequestedHandler = () =>{};
+            (view.subscribeWhenResetIsRequested as any).mockImplementation((handler: any) => {
+                onResetIsRequestedHandler = handler;
+            });
+            new Presenter(view, service);
+
+            onResetIsRequestedHandler();
+
+            expect(service.reset).toHaveBeenCalled();
+        });
+    });
+
     describe("When timer is updated", () => {
         describe("When timer is updated", () => {
             it('shows the time', () => {

@@ -19,6 +19,12 @@ export class Service{
         });
     }
 
+    public reset() : void {
+        this.socket.emit('reset',{
+            sender: this.socket.id || "Anonymous",
+        });
+    }
+
     public subscribeWhenTimeIsUpdated(handler:(time: number)=>void):void {
         this.socket.on('timer_update', (time: number) => {
             handler(time);
