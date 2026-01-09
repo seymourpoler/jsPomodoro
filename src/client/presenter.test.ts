@@ -31,14 +31,14 @@ describe('Presenter', () => {
 
     describe("When timer is updated", () => {
         describe("When timer is updated", () => {
-            it('shows the time', () => { // Added the missing 'it' block
+            it('shows the time', () => {
                 let onTimerIsUpdatedHandler: any;
                 (service.subscribeWhenTimeIsUpdated as any).mockImplementation((handler: any) => {
                     onTimerIsUpdatedHandler = handler;
                 });
 
                 new Presenter(view, service);
-                onTimerIsUpdatedHandler(25, 0); // Pass sample values
+                onTimerIsUpdatedHandler(25, 0);
 
                 expect(view.showTime).toHaveBeenCalled();
             });
