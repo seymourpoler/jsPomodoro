@@ -5,23 +5,20 @@ import {Service} from "./service";
 import {Presenter} from "./presenter";
 
 describe('Presenter', () => {
-    let view : Mocked<View>;
-    let service: Mocked<Service>;
+    let view : View;
+    let service: Service;
 
     beforeEach(() =>{
-        const rawView = new View();
-        spyAllMethodsOf(rawView);
-        view = rawView as any as Mocked<View>;
-
-        const rawService = new Service();
-        spyAllMethodsOf(rawService);
-        service = rawService as any as Mocked<Service>;
+        view = new View();
+        spyAllMethodsOf(view);
+        service = new Service();
+        spyAllMethodsOf(service);
     });
 
     describe("When Start is requested", () => {
         it('Starts', () =>{
             let onStartIsRequestedHandler = () =>{};
-            view.subscribeWhenStartIsRequested.mockImplementation((handler: any) => {
+            (view.subscribeWhenStartIsRequested as any).mockImplementation((handler: any) => {
                 onStartIsRequestedHandler = handler;
             });
             new Presenter(view, service);
@@ -36,7 +33,7 @@ describe('Presenter', () => {
         describe("When timer is updated", () => {
             it('shows the time', () => { // Added the missing 'it' block
                 let onTimerIsUpdatedHandler: any;
-                service.subscribeWhenTimeIsUpdated.mockImplementation((handler: any) => {
+                (service.subscribeWhenTimeIsUpdated as any).mockImplementation((handler: any) => {
                     onTimerIsUpdatedHandler = handler;
                 });
 

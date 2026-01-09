@@ -1,28 +1,16 @@
-import { vi, type Mock } from "vitest";
+import { vi } from "vitest";
 
 export function spyAllMethodsOf<T extends object>(element: T): void {
-    let currentProto = Object.getPrototypeOf(element);
+    const proto = Object.getPrototypeOf(element);
 
-    // We climb the prototype chain until we hit the base Object
-    while (currentProto && currentProto !== Object.prototype) {
-        const propertyNames = Object.getOwnPropertyNames(currentProto);
+    // Get all property names from the class prototype
+    const propertyNames = Object.getOwnPropertyNames(proto);
 
-        for (const name of propertyNames) {
-            if (name === 'constructor') continue;
-
-            const descriptor = Object.getOwnPropertyDescriptor(currentProto, name);
-
-            // Check if it's a function and not already mocked on the instance
-            if (typeof descriptor?.value === 'function' && !Object.prototype.hasOwnProperty.call(element, name)) {
-                // Use defineProperty to avoid "Invalid assignment target" errors
-                Object.defineProperty(element, name, {
-                    value: vi.fn(),
-                    writable: true,
-                    configurable: true,
-                    enumerable: true
-                });
-            }
+    for (const name of propertyNames) {
+        // We only want to spy on methods (functions), not the constructor
+        if (name !== 'constructor' && typeof (element as any)[name] === 'function') {
+            // Overwrite the method on the instance with a vitest mock
+            (element as any)[name] = vi.fn();
         }
-        currentProto = Object.getPrototypeOf(currentProto);
     }
 }
