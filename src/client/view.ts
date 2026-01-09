@@ -8,11 +8,14 @@ export class View {
     }
 
     public showTime(minutes: number, seconds: number){
-        document.getElementById('minutes')?.innerHTML = getTwoDigitsNumber(minutes);
-        document.getElementById('seconds')?.innerHTML = getTwoDigitsNumber(seconds);
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+
+        if (minutesEl) minutesEl.innerHTML = getTwoDigitsNumber(minutes);
+        if (secondsEl) secondsEl.innerHTML = getTwoDigitsNumber(seconds);
 
         function getTwoDigitsNumber(value: number): string{
             return value.toString().padStart(2, '0');
         }
     }
-}
+}1
