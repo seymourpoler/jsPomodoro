@@ -16,12 +16,6 @@ document.getElementById('send')?.addEventListener('click', (event: Event) => {
     });
 });
 
-document.getElementById('reset')?.addEventListener('click', (event: Event) => {
-    event.preventDefault();
-
-    socket.emit('reset');
-});
-
 socket.on('receive_message', (data) => {
     const messageElement = document.createElement('div');
     messageElement.className = 'message-item';
