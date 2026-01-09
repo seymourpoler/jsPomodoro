@@ -3,8 +3,6 @@ import {Service} from "./service";
 import {View} from "./view";
 import {Presenter} from "./presenter";
 
-// 2. Initialize Socket
-// const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io('http://localhost:3001');
 const socket = io('http://localhost:3001');
 
 document.getElementById('send')?.addEventListener('click', (event: Event) => {
@@ -24,7 +22,6 @@ document.getElementById('reset')?.addEventListener('click', (event: Event) => {
     socket.emit('reset');
 });
 
-// 4. Handle Incoming Messages
 socket.on('receive_message', (data) => {
     const messageElement = document.createElement('div');
     messageElement.className = 'message-item';
