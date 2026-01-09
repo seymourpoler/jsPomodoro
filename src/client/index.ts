@@ -1,12 +1,11 @@
 import {io, Socket} from 'socket.io-client';
-import {ServerToClientEvents} from "./serverToClientEvents";
-import {ClientToServerEvents} from "./clientToServerEvents";
 import {Service} from "./service";
 import {View} from "./view";
 import {Presenter} from "./presenter";
 
 // 2. Initialize Socket
-const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io('http://localhost:3001');
+// const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io('http://localhost:3001');
+const socket = io('http://localhost:3001');
 
 document.getElementById('send')?.addEventListener('click', (event: Event) => {
     event.preventDefault();
@@ -16,6 +15,22 @@ document.getElementById('send')?.addEventListener('click', (event: Event) => {
     socket.emit('send_message', {
         message: text,
         sender: socket.id || "Anonymous"
+    });
+});
+
+document.getElementById('start')?.addEventListener('click', (event: Event) => {
+    event.preventDefault();
+
+    socket.emit('start',{
+        sender: socket.id || "Anonymous",
+    });
+});
+
+document.getElementById('stop')?.addEventListener('click', (event: Event) => {
+    event.preventDefault();
+
+    socket.emit('stop',{
+        sender: socket.id || "Anonymous",
     });
 });
 
@@ -29,6 +44,17 @@ socket.on('receive_message', (data) => {
     messageContainer.appendChild(messageElement);
     // Auto-scroll to the bottom
     messageContainer.scrollTop = messageContainer.scrollHeight;
+});
+
+socket.on('updated_time', (time) => {
+    // const minutes = document.getElementById('minutes');
+    // if(minutes) minutes.innerHTML = time.minutes;
+    //
+    // const hours = document.getElementById('hours');
+    // if(hours) hours.innerText = time.hours;
+
+    const minutes = document.getElementById('minutes');
+    if(minutes) minutes.innerHTML = time;
 });
 
 const service = new Service();

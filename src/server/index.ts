@@ -7,20 +7,10 @@ const app = express();
 app.use(cors());
 
 const server = http.createServer(app);
-let counter = 0;
-let timerInterval: NodeJS.Timeout | null = null;
+let numberOfSeconds = 0;
+var timerInterval: NodeJS.Timeout | undefined = undefined;
 
-interface ServerToClientEvents {
-    receive_message: (data: { message: string, sender: string }) => void;
-    timer_update: (time: number) => void;
-}
-
-interface ClientToServerEvents {
-    send_message: (data: { message: string, sender: string }) => void;
-    start : (sender: string) => void;
-}
-
-const io = new Server<ClientToServerEvents, ServerToClientEvents>(server, {
+const io = new Server(server, {
     cors: {
         origin: "http://localhost:5173",
         methods: ["GET", "POST"],
@@ -38,11 +28,18 @@ io.on("connection", (socket) => {
 
     socket.on('start', (sender) =>{
         console.log(`User started: ${sender}`);
+
         timerInterval = setInterval(() => {
-            counter++;
-            // Broadcast the new counter value to EVERYONE
-            io.emit("timer_update", counter);
+            numberOfSeconds++;
+            // Broadcast the new numberOfSeconds value to EVERYONE
+            io.emit("updated_time", numberOfSeconds);
         }, 1000);
+    });
+
+    socket.on("stop", () => {
+        console.log(`User stop: ${socket.id}`);
+        clearInterval(timerInterval);
+        timerInterval = undefined;
     });
 });
 
