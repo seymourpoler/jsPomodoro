@@ -1,9 +1,5 @@
 import { vi, type Mock } from "vitest";
 
-export type Mocked<T> = T & {
-    [P in keyof T]: T[P] extends (...args: any[]) => any ? Mock<T[P]> : T[P];
-};
-
 export function spyAllMethodsOf<T extends object>(element: T): void {
     let currentProto = Object.getPrototypeOf(element);
 
