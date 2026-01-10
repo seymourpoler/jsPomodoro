@@ -20,12 +20,6 @@ const io = new Server(server, {
 io.on("connection", (socket) => {
     console.log(`User connected: ${socket.id}`);
 
-    socket.on("send_message", (data) => {
-        // Broadcast the message to everyone (including sender)
-        console.log('message received', data);
-        io.emit("receive_message", data);
-    });
-
     socket.on('start', (sender) =>{
         console.log(`User started: ${sender}`);
 

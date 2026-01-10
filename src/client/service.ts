@@ -1,6 +1,6 @@
 import {io, Socket} from 'socket.io-client';
 
-export class Service{
+export class Service {
     private readonly socket: Socket;
 
     constructor(){
