@@ -6,7 +6,7 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 
-const defaultNumberOfSeconds = 2;
+const defaultNumberOfSeconds = 1500;
 let numberOfSeconds = defaultNumberOfSeconds;
 let timerInterval: NodeJS.Timeout | undefined = undefined;
 
