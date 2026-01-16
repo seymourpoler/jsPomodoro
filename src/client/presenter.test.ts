@@ -3,16 +3,20 @@ import {spyAllMethodsOf} from "../testing";
 import {View} from "./view";
 import {Service} from "./service";
 import {Presenter} from "./presenter";
+import {Sound} from "./sound";
 
 describe('Presenter', () => {
     let view : View;
     let service: Service;
+    let sound: Sound;
 
     beforeEach(() =>{
         view = new View();
         spyAllMethodsOf(view);
         service = new Service();
         spyAllMethodsOf(service);
+        sound = new Sound();
+        spyAllMethodsOf(sound);
     });
 
     describe("When Start is requested", () => {
@@ -21,7 +25,7 @@ describe('Presenter', () => {
             (view.subscribeWhenStartIsRequested as any).mockImplementation((handler: any) => {
                 onStartIsRequestedHandler = handler;
             });
-            new Presenter(view, service);
+            new Presenter(view, service, sound);
 
             onStartIsRequestedHandler();
 
@@ -35,7 +39,7 @@ describe('Presenter', () => {
             (view.subscribeWhenStopIsRequested as any).mockImplementation((handler: any) => {
                 onStopIsRequestedHandler = handler;
             });
-            new Presenter(view, service);
+            new Presenter(view, service, sound);
 
             onStopIsRequestedHandler();
 
@@ -49,7 +53,7 @@ describe('Presenter', () => {
             (view.subscribeWhenResetIsRequested as any).mockImplementation((handler: any) => {
                 onResetIsRequestedHandler = handler;
             });
-            new Presenter(view, service);
+            new Presenter(view, service, sound);
 
             onResetIsRequestedHandler();
 
@@ -64,7 +68,7 @@ describe('Presenter', () => {
                 (service.subscribeWhenTimeIsUpdated as any).mockImplementation((handler: any) => {
                     onTimerIsUpdatedHandler = handler;
                 });
-                new Presenter(view, service);
+                new Presenter(view, service, sound);
 
                 onTimerIsUpdatedHandler(25, 0);
 
@@ -72,4 +76,18 @@ describe('Presenter', () => {
             });
         });
     });
+
+    describe("When the time is up", () => {
+        it('sounds the alarm', () => {
+            let onTimerIsUpdatedHandler: any;
+            (service.subscribeWhenTimeIsUpdated as any).mockImplementation((handler: any) => {
+                onTimerIsUpdatedHandler = handler;
+            });
+            new Presenter(view, service, sound);
+
+            onTimerIsUpdatedHandler(0, 0);
+
+            expect(sound.play).toHaveBeenCalled();
+        })
+    })
 });

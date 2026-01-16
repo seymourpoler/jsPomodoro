@@ -1,8 +1,9 @@
 import {View} from "./view";
 import {Service} from "./service";
+import {Sound} from "./sound";
 
 export class Presenter {
-    constructor(private readonly view: View, private readonly service: Service) {
+    constructor(private readonly view: View, private readonly service: Service, private readonly sound: Sound) {
         view.subscribeWhenStartIsRequested(this.onStartIsRequestedHandler);
         view.subscribeWhenStopIsRequested(this.onStopIsRequestedHandler);
         view.subscribeWhenResetIsRequested(this.onResetIsRequestedHandler);
@@ -22,6 +23,10 @@ export class Presenter {
     };
 
     private onTimeIsUpdatedHandler = (time: number): void => {
+        if(time === 0){
+            this.sound.play();
+            return;
+        }
         const minutes = Math.floor(time / 60);
         const seconds = time - minutes * 60;
         this.view.showTime(minutes, seconds);
