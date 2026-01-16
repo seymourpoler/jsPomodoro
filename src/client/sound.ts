@@ -1,5 +1,6 @@
 export class Sound {
     public play(): void{
-        throw new Error("not implemented");
+        const audio = new Audio('./timer/alarm.mp3');
+        audio.play();
     }
 }
