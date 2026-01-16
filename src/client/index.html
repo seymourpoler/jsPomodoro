@@ -4,20 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LeanTime</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div class="container">
     <h1>LeanTime</h1>
 
     <div id="timer">
-        <label id="minutes">25</label>:<label id="seconds">00</label>
+        <span id="minutes">25</span>:<span id="seconds">00</span>
     </div>
-    <button id="start">Start</button>
-    <button id="stop">Stop</button>
-    <button id="reset">Reset</button>
 
-    <script type="module" src="index.ts"></script>
+    <div class="controls">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+    </div>
+</div>
+
+<script type="module" src="index.ts"></script>
 </body>
 </html>

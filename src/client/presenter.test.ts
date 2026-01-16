@@ -1,4 +1,4 @@
-import {beforeEach, describe, expect, it, type Mocked} from "vitest";
+import {beforeEach, describe, expect, it} from "vitest";
 import {spyAllMethodsOf} from "../testing";
 import {View} from "./view";
 import {Service} from "./service";

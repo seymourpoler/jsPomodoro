@@ -1,0 +1,81 @@
+:root {
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --primary: #4f46e5;
+    --danger: #ef4444;
+    --text: #1f2937;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 320px;
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    letter-spacing: -0.025em;
+    color: var(--primary);
+}
+
+#timer {
+    font-size: 5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#start {
+    background-color: var(--primary);
+    color: white;
+    grid-column: span 2;
+}
+
+#stop {
+    background-color: #e5e7eb;
+    color: var(--text);
+}
+
+#reset {
+    background-color: #fee2e2;
+    color: var(--danger);
+}
+
+button:hover {
+    opacity: 0.9;
+}
