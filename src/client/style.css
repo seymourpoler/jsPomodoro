@@ -4,6 +4,7 @@
     --primary: #4f46e5;
     --danger: #ef4444;
     --text: #1f2937;
+    --footer-text: #6b7280;
 }
 
 body {
@@ -25,6 +26,7 @@ body {
     text-align: center;
     width: 320px;
     margin: auto;
+    transition: background-color 0.3s ease;
 }
 
 h1 {
@@ -86,6 +88,18 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    background-color: var(--bg-color);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --primary: #818cf8;
+    --danger: #f87171;
+    --text: #f8fafc;
+    --footer-text: #94a3b8;
 }
 
 .app-footer {

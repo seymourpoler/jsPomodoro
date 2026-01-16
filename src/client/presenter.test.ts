@@ -91,4 +91,18 @@ describe('Presenter', () => {
             expect(service.stop).toHaveBeenCalled();
         })
     })
+
+    describe("When change theme is requested", () => {
+        it('changes the theme', () => {
+            let onChangeThemeIsRequestedHandler: any;
+            (view.subscribeWhenChangeThemeIsRequested as any).mockImplementation((handler: any) => {
+                onChangeThemeIsRequestedHandler = handler;
+            });
+            new Presenter(view, service, sound);
+
+            onChangeThemeIsRequestedHandler();
+
+            expect(view.changeTheme).toHaveBeenCalled();
+        })
+    })
 });

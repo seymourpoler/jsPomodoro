@@ -1,5 +1,6 @@
 export class View {
-    public subscribeWhenStartIsRequested (handler: () => void){
+
+    public subscribeWhenStartIsRequested (handler: () => void):void{
         document.getElementById('start')?.addEventListener('click', (event: Event) => {
             event.preventDefault();
 
@@ -7,7 +8,7 @@ export class View {
         });
     }
 
-    public subscribeWhenStopIsRequested(handler: () => void){
+    public subscribeWhenStopIsRequested(handler: () => void):void{
         document.getElementById('stop')?.addEventListener('click', (event: Event) => {
             event.preventDefault();
 
@@ -15,8 +16,16 @@ export class View {
         });
     }
 
-    public subscribeWhenResetIsRequested(handler: () => void){
+    public subscribeWhenResetIsRequested(handler: () => void):void{
         document.getElementById('reset')?.addEventListener('click', (event: Event) => {
+            event.preventDefault();
+
+            handler();
+        });
+    }
+
+    public subscribeWhenChangeThemeIsRequested(handler: () => void):void{
+        document.getElementById('theme-toggle')?.addEventListener('click', (event: Event) => {
             event.preventDefault();
 
             handler();
@@ -34,4 +43,21 @@ export class View {
             return value.toString().padStart(2, '0');
         }
     }
-}1
+
+    public changeTheme(){
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            body.classList.add('dark');
+            if (themeToggle) themeToggle.textContent = '☀️';
+        }
+        body.classList.toggle('dark');
+        const isDark = body.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+        if(themeToggle) themeToggle.textContent = isDark ? '☀️' : '🌙';
+    }
+}

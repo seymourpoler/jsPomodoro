@@ -7,6 +7,7 @@ export class Presenter {
         view.subscribeWhenStartIsRequested(this.onStartIsRequestedHandler);
         view.subscribeWhenStopIsRequested(this.onStopIsRequestedHandler);
         view.subscribeWhenResetIsRequested(this.onResetIsRequestedHandler);
+        view.subscribeWhenChangeThemeIsRequested(this.onChangeThemeIsRequestedHandler)
         service.subscribeWhenTimeIsUpdated(this.onTimeIsUpdatedHandler);
     }
 
@@ -31,5 +32,9 @@ export class Presenter {
         const minutes = Math.floor(time / 60);
         const seconds = time - minutes * 60;
         this.view.showTime(minutes, seconds);
-    }
+    };
+
+    private onChangeThemeIsRequestedHandler = (): void => {
+        this.view.changeTheme();
+    };
 }
