@@ -6,7 +6,8 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 
-let numberOfSeconds = 1500;
+const defaultNumberOfSeconds = 2;
+let numberOfSeconds = defaultNumberOfSeconds;
 let timerInterval: NodeJS.Timeout | undefined = undefined;
 
 const server = http.createServer(app);
@@ -38,7 +39,7 @@ io.on("connection", (socket) => {
         console.log(`User stop: ${socket.id}`);
         if (timerInterval) {
             clearInterval(timerInterval);
-            timerInterval = undefined; // Reset to undefined so it can be started again
+            timerInterval = undefined;
             console.log("Timer stopped successfully");
         }
     });
@@ -49,7 +50,7 @@ io.on("connection", (socket) => {
             clearInterval(timerInterval);
             timerInterval = undefined;
         }
-        numberOfSeconds = 1500;
+        numberOfSeconds = defaultNumberOfSeconds;
         io.emit("updated_time", numberOfSeconds);
     });
 });

@@ -25,6 +25,7 @@ export class Presenter {
     private onTimeIsUpdatedHandler = (time: number): void => {
         if(time === 0){
             this.sound.play();
+            this.service.stop();
             return;
         }
         const minutes = Math.floor(time / 60);

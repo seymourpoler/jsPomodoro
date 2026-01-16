@@ -88,6 +88,7 @@ describe('Presenter', () => {
             onTimerIsUpdatedHandler(0, 0);
 
             expect(sound.play).toHaveBeenCalled();
+            expect(service.stop).toHaveBeenCalled();
         })
     })
 });
