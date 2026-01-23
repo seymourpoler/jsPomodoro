@@ -35,12 +35,12 @@ io.on("connection", (socket) => {
         }, 1000);
     });
 
-    socket.on("stop", () => {
-        console.log(`User stop: ${socket.id}`);
+    socket.on("pause", () => {
+        console.log(`User pause: ${socket.id}`);
         if (timerInterval) {
             clearInterval(timerInterval);
             timerInterval = undefined;
-            console.log("Timer stopped successfully");
+            console.log("Timer paused successfully");
         }
     });
 

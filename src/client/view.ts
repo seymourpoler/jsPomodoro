@@ -8,8 +8,8 @@ export class View {
         });
     }
 
-    public subscribeWhenStopIsRequested(handler: () => void):void{
-        document.getElementById('stop')?.addEventListener('click', (event: Event) => {
+    public subscribeWhenPauseIsRequested(handler: () => void):void{
+        document.getElementById('pause')?.addEventListener('click', (event: Event) => {
             event.preventDefault();
 
             handler();

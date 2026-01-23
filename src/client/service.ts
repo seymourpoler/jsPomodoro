@@ -13,8 +13,8 @@ export class Service {
         });
     }
 
-    public stop() : void {
-        this.socket.emit('stop',{
+    public pause() : void {
+        this.socket.emit('pause',{
             sender: this.socket.id || "Anonymous",
         });
     }

@@ -33,17 +33,17 @@ describe('Presenter', () => {
         });
     });
 
-    describe("When Stop is requested", () => {
-        it('Stops', () =>{
-            let onStopIsRequestedHandler = () =>{};
-            (view.subscribeWhenStopIsRequested as any).mockImplementation((handler: any) => {
-                onStopIsRequestedHandler = handler;
+    describe("When Pause is requested", () => {
+        it('Pauses', () =>{
+            let onPauseIsRequestedHandler = () =>{};
+            (view.subscribeWhenPauseIsRequested as any).mockImplementation((handler: any) => {
+                onPauseIsRequestedHandler = handler;
             });
             new Presenter(view, service, sound);
 
-            onStopIsRequestedHandler();
+            onPauseIsRequestedHandler();
 
-            expect(service.stop).toHaveBeenCalled();
+            expect(service.pause).toHaveBeenCalled();
         });
     });
 
@@ -88,7 +88,7 @@ describe('Presenter', () => {
             onTimerIsUpdatedHandler(0, 0);
 
             expect(sound.play).toHaveBeenCalled();
-            expect(service.stop).toHaveBeenCalled();
+            expect(service.pause).toHaveBeenCalled();
         })
     })
 

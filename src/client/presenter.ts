@@ -5,7 +5,7 @@ import {Sound} from "./sound";
 export class Presenter {
     constructor(private readonly view: View, private readonly service: Service, private readonly sound: Sound) {
         view.subscribeWhenStartIsRequested(this.onStartIsRequestedHandler);
-        view.subscribeWhenStopIsRequested(this.onStopIsRequestedHandler);
+        view.subscribeWhenPauseIsRequested(this.onStopIsRequestedHandler);
         view.subscribeWhenResetIsRequested(this.onResetIsRequestedHandler);
         view.subscribeWhenChangeThemeIsRequested(this.onChangeThemeIsRequestedHandler)
         service.subscribeWhenTimeIsUpdated(this.onTimeIsUpdatedHandler);
@@ -16,7 +16,7 @@ export class Presenter {
     }
 
     private onStopIsRequestedHandler = (): void => {
-        this.service.stop();
+        this.service.pause();
     };
 
     private onResetIsRequestedHandler = (): void => {
@@ -26,7 +26,7 @@ export class Presenter {
     private onTimeIsUpdatedHandler = (time: number): void => {
         if(time === 0){
             this.sound.play();
-            this.service.stop();
+            this.service.pause();
             return;
         }
         const minutes = Math.floor(time / 60);
