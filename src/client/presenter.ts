@@ -8,6 +8,8 @@ export class Presenter {
         view.subscribeWhenPauseIsRequested(this.onStopIsRequestedHandler);
         view.subscribeWhenResetIsRequested(this.onResetIsRequestedHandler);
         view.subscribeWhenChangeThemeIsRequested(this.onChangeThemeIsRequestedHandler)
+        view.subscribeWhenShowSettingsIsRequested(this.onShowSettingsIsRequestedHandler)
+
         service.subscribeWhenTimeIsUpdated(this.onTimeIsUpdatedHandler);
     }
 
@@ -36,5 +38,9 @@ export class Presenter {
 
     private onChangeThemeIsRequestedHandler = (): void => {
         this.view.changeTheme();
+    };
+
+    private onShowSettingsIsRequestedHandler = (): void => {
+        this.view.showSettings();
     };
 }

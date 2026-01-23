@@ -105,4 +105,18 @@ describe('Presenter', () => {
             expect(view.changeTheme).toHaveBeenCalled();
         })
     })
+
+    describe("When showing settings is requested", () => {
+        it('settings shows', () =>{
+            let onShowSettingsIsRequestedHandler: any;
+            (view.subscribeWhenShowSettingsIsRequested as any).mockImplementation((handler: any) => {
+                onShowSettingsIsRequestedHandler = handler;
+            });
+            new Presenter(view, service, sound);
+
+            onShowSettingsIsRequestedHandler();
+
+            expect(view.showSettings).toHaveBeenCalled();
+        });
+    })
 });

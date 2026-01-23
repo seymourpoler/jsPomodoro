@@ -32,6 +32,14 @@ export class View {
         });
     }
 
+    public subscribeWhenShowSettingsIsRequested(handler: () => void):void{
+        document.getElementById('settings')?.addEventListener('click', (event: Event) => {
+            event.preventDefault();
+
+            handler();
+        });
+    }
+
     public showTime(minutes: number, seconds: number){
         const minutesEl = document.getElementById('minutes');
         const secondsEl = document.getElementById('seconds');
@@ -60,4 +68,6 @@ export class View {
 
         if(themeToggle) themeToggle.textContent = isDark ? '☀️' : '🌙';
     }
+
+    public showSettings(): void{}
 }
